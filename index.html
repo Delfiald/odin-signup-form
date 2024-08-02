@@ -9,8 +9,11 @@
 <body>
   <div class="container">
     <header class="header">
-      <div class="hero">
-        <h1>Welcome</h1>
+      <div class="hero welcome show">
+        <h1 class="xl-header">Welcome</h1>
+      </div>
+      <div class="hero terms-of-services">
+        <h1 class="l-header">Terms of Services</h1>
       </div>
     </header>
     <main class="main">
@@ -22,28 +25,60 @@
           <div class="form-body">
             <div class="form-main">
               <div class="input">
-                <label for="first_name">First Name</label>
-                <input type="text" id="first_name" name="first_name" required placeholder="John">
+                <input type="text" id="first_name" name="first_name" title="Insert Your First Name" pattern="^[A-Za-z. ]+$" required placeholder="John">
+                <label for="first_name">
+                  First Name
+                </label>
+                <div class="f-name">
+                  <div class="guide-text">
+                    <span class="empty">*At least you have a name lol</span>
+                    <span class="invalid">*Are you kidding?</span>
+                  </div>
+                </div>
               </div>
               <div class="input">
+                <input type="text" id="last_name" name="last_name" title="Insert Your Last Name" pattern="^[A-Za-z. ]+$" required placeholder="Doe">
                 <label for="last_name">Last Name</label>
-                <input type="text" id="last_name" name="last_name" required placeholder="Doe">
+                <div class="f-name">
+                  <div class="guide-text">
+                    <span class="empty">*You have family?</span>
+                    <span class="invalid">*Are you kidding?</span>
+                  </div>
+                </div>
               </div>
               <div class="input">
+                <input type="email" id="email" name="email" title="Insert Your Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required placeholder="johndoe@email.com">
                 <label for="email">Email</label>
-                <input type="email" id="email" name="email" required placeholder="johndoe@email.com">
+                <div class="f-name">
+                  <div class="guide-text">
+                    <span class="empty">*Insert any email</span>
+                    <span class="invalid">*Email must have an @</span>
+                  </div>
+                </div>
               </div>
               <div class="input">
+                <input type="text" id="phone" name="phone" minlength="10" title="Insert Your Phone Number" pattern="^\+?[0-9-]+$" required placeholder="+62">
                 <label for="phone">Phone Number</label>
-                <input type="text" id="phone" name="phone" placeholder="+62">
+                <div class="f-name">
+                  <div class="guide-text">
+                    <span class="empty">*Can i get your phone?</span>
+                    <span class="invalid">*Please</span>
+                  </div>
+                </div>
               </div>
               <div class="input">
+                <input type="password" id="password" name="password" minlength="8" placeholder="Password" required>
                 <label for="password">Password</label>
-                <input type="password" id="password" name="password" required>
               </div>
               <div class="input">
+                <input type="password" id="confirm-password" name="confirm-password" minlength="8" placeholder="Password" required>
                 <label for="confirm-password">Confirm Password</label>
-                <input type="password" id="confirm-password" name="confirm-password" required>
+                <div class="f-name">
+                  <div class="guide-text">
+                    <span class="empty">*Repeat your password</span>
+                    <span class="invalid">*Password not matched</span>
+                  </div>
+                </div>
               </div>
             </div>
 

@@ -15,6 +15,8 @@ const section = () => {
 
 const signUpButton = document.getElementById('sign-up-btn');
 const signUpBackButton = document.getElementById('tos-back');
+const heroWelcome = document.querySelector('.hero.welcome');
+const heroTos = document.querySelector('.hero.terms-of-services');
 
 signUpButton.addEventListener('click', (e) => {
   e.preventDefault();
@@ -22,6 +24,12 @@ signUpButton.addEventListener('click', (e) => {
     signUp.classList.toggle('show');
     signUp.classList.toggle('hide');
     tos.classList.toggle('show');
+    heroWelcome.classList.add('hide');
+    heroWelcome.classList.remove('show');
+    heroTos.classList.add('show');
+    heroTos.classList.remove('hide');
+  }else{
+    console.log(tos.className);
   }
 })
 
@@ -30,6 +38,10 @@ signUpBackButton.addEventListener('click', (e) => {
     signUp.classList.toggle('show');
     signUp.classList.toggle('hide');
     tos.classList.toggle('show');
+    heroWelcome.classList.remove('hide');
+    heroWelcome.classList.add('show');
+    heroTos.classList.remove('show');
+    heroTos.classList.add('hide');
   }
 })
 
