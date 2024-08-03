@@ -10,12 +10,14 @@ const tos = document.querySelector('.tos');
 const section = () => {
   if(signUp.className === 'sign-up'){
     signUp.classList.toggle('show');
+    heroOptions.classList.add('hide');
   }
 }
 
 const signUpButton = document.getElementById('sign-up-btn');
 const signUpBackButton = document.getElementById('tos-back');
 const heroWelcome = document.querySelector('.hero.welcome');
+const heroOptions = document.querySelector('.hero.sign-up-header');
 const heroTos = document.querySelector('.hero.terms-of-services');
 
 signUpButton.addEventListener('click', (e) => {
@@ -26,6 +28,7 @@ signUpButton.addEventListener('click', (e) => {
     tos.classList.toggle('show');
     heroWelcome.classList.add('hide');
     heroWelcome.classList.remove('show');
+    heroOptions.classList.add('hide');
     heroTos.classList.add('show');
     heroTos.classList.remove('hide');
   }else{

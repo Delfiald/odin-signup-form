@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="css/style.css">
   <title>Odin Sign-up Form</title>
 </head>
@@ -12,12 +13,41 @@
       <div class="hero welcome show">
         <h1 class="xl-header">Welcome</h1>
       </div>
+      <div class="hero sign-up-header hide">
+        <h1 class="xl-header">Sign Up</h1>
+      </div>
       <div class="hero terms-of-services">
         <h1 class="l-header">Terms of Services</h1>
       </div>
     </header>
     <main class="main">
-      <section class="sign-up">
+      <section class="options show">
+        <div class="options-header xl-header">
+          <h2>Sign Up</h2>
+        </div>
+        <div class="options-body">
+          <a class="option google" href="https://google.com">
+            <i class="fab fa-google"></i>
+            <h3>Sign Up with Google</h3>
+          </a>
+          <a class="option github">
+            <i class="fab fa-github"></i>
+            <h3>Sign Up with Github</h3>
+          </a>
+          <a class="option facebook">
+            <i class="fab fa-facebook"></i>
+            <h3>Sign Up with Facebook</h3>
+          </a>
+          <div>
+            <h3>or</h3>
+          </div>
+          <button class="create-account">
+              <h3>Create Account</h3>
+          </button>
+          <p>Already have an account? <a href="login.html">Log in</a></p>
+        </div>
+      </section>
+      <section class="sign-up hide">
         <form action="" method="" class="form-wrapper">
           <div class="form-header">
             <h2>Hello! Please tell us a little bit about yourself.</h2>
@@ -61,7 +91,7 @@
                 <label for="phone">Phone Number</label>
                 <div class="f-name">
                   <div class="guide-text">
-                    <span class="empty">*Can i get your phone?</span>
+                    <span class="empty">*Can i get your number?</span>
                     <span class="invalid">*Please</span>
                   </div>
                 </div>
