@@ -13,9 +13,6 @@
       <div class="hero welcome show">
         <h1 class="xl-header">Welcome</h1>
       </div>
-      <div class="hero sign-up-header hide">
-        <h1 class="xl-header">Sign Up</h1>
-      </div>
       <div class="hero terms-of-services">
         <h1 class="l-header">Terms of Services</h1>
       </div>
@@ -41,7 +38,7 @@
           <div>
             <h3>or</h3>
           </div>
-          <button class="create-account">
+          <button type="button" id="create-account">
               <h3>Create Account</h3>
           </button>
           <p>Already have an account? <a href="login.html">Log in</a></p>
@@ -114,7 +111,7 @@
 
             <div class="form-bottom">
               <button id="sign-up-btn" type="submit">Sign Up</button>
-              <button type="button">Sign Up with Social Media</button>
+              <button id="options-btn" type="button">Sign Up with Social Media</button>
               <p>Already have an account? <a href="login.html">Log in</a></p>
             </div>
           </div>
@@ -155,7 +152,19 @@
         </div>
         <div class="tos-bottom">
           <button type="button" id="tos-back">Back</button>
-          <button type="button">Confirm</button>
+          <button type="button" id="tos-confirm">Confirm</button>
+        </div>
+      </section>
+
+      <section class="signed-up">
+        <div class="registered-header">
+          <h2 class="xl-header">Welcome to the Cult</h2>
+          <h2 class="username l-header">Doge</h2>
+        </div>
+        <div class="registered-body">
+          <div class="button-wrapper">
+            <button type="button">Log in</button>
+          </div>
         </div>
       </section>
     </main>

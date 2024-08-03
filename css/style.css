@@ -99,6 +99,7 @@ body {
   z-index: 2;
   border-radius: 10% 0 0 10%;
   padding: 1rem;
+  transition: 1s all ease;
 }
 
 .header * {
@@ -148,7 +149,18 @@ body {
   display: flex;
   justify-content: center;
   flex-direction: column;
+  background: #fff;
   animation: main-fade .5s ease-in forwards;
+  transition: .5s all ease;
+}
+
+.container.registered .header {
+  flex: 0;
+  opacity: 0;
+  padding: 0;
+}
+.container.registered .main {
+  flex: 1;
 }
 
 .main > section {
@@ -235,11 +247,6 @@ body {
   transition: .5s all ease-in-out;
 }
 
-.sign-up.hide {
-  opacity: 0;
-  visibility: hidden;
-}
-
 .form-wrapper {
   flex: 1;
   display: flex;
@@ -321,7 +328,8 @@ body {
 }
 
 .form-main .input input:focus:empty ~ div,
-.form-main .input input:focus:valid ~ div {
+.form-main .input input:focus:valid ~ div,
+.form-main .input input:invalid ~ div {
   top: -50%;
 }
 
@@ -346,7 +354,8 @@ body {
 }
 
 input:focus:placeholder-shown ~ div .guide-text .empty,
-input:focus:invalid ~ div .guide-text .invalid {
+input:focus:invalid ~ div .guide-text .invalid,
+input:not(:placeholder-shown):invalid ~ div .guide-text .invalid {
   opacity: 1;
   visibility: visible;
 }
@@ -374,6 +383,12 @@ input:focus:valid ~ div .guide-text * {
 
 .form-bottom > button:nth-child(2):hover {
   filter: brightness(.8);
+}
+
+.container.registered .tos {
+  transition-delay: 0s;
+  opacity: 0;
+  visibility: hidden;
 }
 
 .tos {
@@ -413,6 +428,54 @@ input:focus:valid ~ div .guide-text * {
   display: flex;
   align-content: center;
   justify-content: space-between;
+}
+
+.signed-up {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.registered-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.registered-body {
+  flex: 1 1 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.button-wrapper {
+  position: relative;
+}
+
+.registered-body button {
+  font-size: 1.5rem;
+  font-weight: 700;
+  padding: 1rem 2rem;
+  border-radius: 5px;
+}
+
+.registered-body button:active {
+  transform: translateY(15%);
+}
+
+.button-wrapper::after {
+  position: absolute;
+  content: '';
+  top: 15%;
+  left: -2.5%;
+  width: 105%;
+  height: 100%;
+  background-color: #333;
+  z-index: -1;
+  border-radius: 5px;
 }
 
 @keyframes main-fade {
