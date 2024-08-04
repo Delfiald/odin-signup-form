@@ -36,17 +36,6 @@ input {
   transition: .25s border ease;
 }
 
-select {
-  font-size: 1rem;
-  font-family: inherit;
-  padding: 5px;
-}
-
-select:hover {
-  cursor: pointer;
-  opacity: .8;
-}
-
 button {
   --_primary-color: var(--primary-color, #333);
   background: var(--_primary-color);
@@ -305,20 +294,107 @@ body {
   gap: 0;
 }
 
-.form-main .input.phone select {
+.form-main .input.phone .select-codes {
+  position: relative;
+  transform: translateY(0);
+  background: #fff;
   border: 2px solid #ccc;
-  border-radius: 5px 0 0 5px;
   border-right: 0;
+  border-radius: 5px 0 0 5px;
+  padding: 0 .5rem;
+  margin: 0;
+  color: #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 2;
+  font-size: 1rem;
+}
+
+.form-main .input.phone .select-codes:hover {
+  background: #f4f4f4;
+}
+
+.form-main .input.phone .select-codes i:last-of-type,
+.form-main .input.phone .select-codes:hover i:first-of-type {
+  opacity: 0;
+  visibility: hidden;
+  transition: .5s all ease;
+}
+
+.form-main .input.phone .select-codes i:last-of-type {
+  position: absolute;
+  right: 0;
+  transform: translateX(-50%);
+}
+
+.form-main .input.phone .select-codes:hover i:last-of-type {
+  opacity: 1;
+  visibility: visible;
 }
 
 .form-main .input.phone input {
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
+  border-radius: 0 5px 5px 0;
   width: 100%;
 }
 
 .form-main .input.phone label {
-  left: 4rem;
+  left: 4.5rem;
+}
+
+.form-main .input.phone input:focus ~ label {
+  left: 0;
+}
+
+.form-main .input.phone .select-codes .select-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+}
+
+.form-main .input.phone .options-wrapper {
+  position: absolute;
+  top: 100%;
+  opacity: 0;
+  visibility: hidden;
+  transition: .5s all ease;
+  transform-origin: top;
+  transform: scaleY(0);
+  background: #fff;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ccc;
+}
+
+.form-main .input.phone .options-wrapper div {
+  border-top: 1px solid #ccc;
+  padding: .5rem;
+  transform: .5s all ease;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  font-family: inherit;
+}
+
+.form-main .input.phone .options-wrapper div:hover {
+  background: #f4f4f4;
+}
+
+.form-main .input.phone .select-codes:hover .options-wrapper {
+  opacity: 1;
+  visibility: visible;
+  transform: scaleY(1);
+}
+
+.form-main .input.phone input {
+  flex: 80%;
 }
 
 .form-main .input label {

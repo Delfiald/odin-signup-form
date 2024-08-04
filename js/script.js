@@ -75,5 +75,15 @@ tosConfirm.addEventListener('click', (e) => {
   }
 })
 
+const getCode = document.querySelector('.select-codes');
+
+getCode.addEventListener('click', (e) => {
+  if (e.target.classList.contains('code')) {
+    const codeValue = e.target.getAttribute('data-value');
+    const codeActive = getCode.querySelector('.code-active');
+    codeActive.textContent = codeValue;
+  }
+})
+
 document.addEventListener('DOMContentLoaded', setTheme);
 document.addEventListener('DOMContentLoaded', section);
