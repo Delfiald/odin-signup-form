@@ -70,7 +70,7 @@ createButton.addEventListener('click', (e) => {
 tosConfirm.addEventListener('click', (e) => {
   if(tos.className === 'tos show'){
     container.classList.add('registered');
-    // tos.classList.toggle('show');
+    tos.classList.toggle('show');
     signed.classList.toggle('show');
   }
 })
