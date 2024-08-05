@@ -27,19 +27,21 @@ const tosConfirm = document.getElementById('tos-confirm');
 const container = document.querySelector('.container');
 
 signUpButton.addEventListener('click', (e) => {
-  e.preventDefault();
-  if(signUp.className === 'sign-up show'){
-    signUp.classList.toggle('show');
-    tos.classList.toggle('show');
+  // e.preventDefault();
+  // if(signUp.className === 'sign-up show'){
+  //   signUp.classList.toggle('show');
+  //   tos.classList.toggle('show');
 
-    // Hero
-    heroWelcome.classList.add('hide');
-    heroWelcome.classList.remove('show');
-    heroTos.classList.add('show');
-    heroTos.classList.remove('hide');
-  }else{
-    console.log(tos.className);
-  }
+  //   // Hero
+  //   heroWelcome.classList.add('hide');
+  //   heroWelcome.classList.remove('show');
+  //   heroTos.classList.add('show');
+  //   heroTos.classList.remove('hide');
+  // }else{
+  //   console.log(tos.className);
+  // }
+  
+  passCheck();
 })
 
 signUpBackButton.addEventListener('click', (e) => {
@@ -84,6 +86,88 @@ getCode.addEventListener('click', (e) => {
     codeActive.textContent = codeValue;
   }
 })
+
+const password = document.querySelector('.input.password');
+const confirmPassword = document.querySelector('.input.confirm-password');
+
+const passInput = password.querySelector('#password');
+const confirmPassInput = confirmPassword.querySelector('#confirm-password');
+
+const passCheck = () => {
+  passwordStrength(passInput, confirmPassInput);
+}
+
+passInput.addEventListener('input', (e) => {
+  passwordStrength(passInput);
+})
+
+const passwordStrength = (passInput) => {
+  const passValue = passInput.value;
+  const strengthBg = password.querySelector('.strength-background');
+  const strengthText = password.querySelector('.strength');
+
+  const containsUppercase = /[A-Z]/.test(passValue);
+  const containsLowercase = /[a-z]/.test(passValue);
+  const containsDigit = /\d/.test(passValue);
+  const containsSymbol = /[\W_]/.test(passValue);
+
+
+  console.log(passValue.length >= 8);
+  if(passValue.length >= 8){
+    if(containsDigit && (containsLowercase || containsUppercase || containsSymbol)){
+      passInput.setCustomValidity('');
+      strengthBg.style.background = 'yellow';
+      strengthBg.style.flexBasis = '25%';
+      strengthText.textContent = 'Weak';
+      strengthText.style.opacity = '1';
+      strengthText.style.color = '#333';
+      if((containsLowercase && containsUppercase) || (containsSymbol && containsLowercase) || (containsUppercase && containsSymbol)) {
+        strengthBg.style.background = 'green';
+        strengthBg.style.flexBasis = '50%';
+        strengthText.textContent = 'Moderate';
+        if(containsLowercase && containsUppercase && containsSymbol) {
+          strengthBg.style.background = 'red';
+          strengthBg.style.flexBasis = '75%';
+          strengthText.textContent = 'Strong';
+          if(passValue.length >= 12) {
+            strengthBg.style.background = 'darkred';
+            strengthBg.style.flexBasis = '100%';
+            strengthText.textContent = 'Chad';
+          }
+        }
+      }
+    }else{
+      passInput.setCustomValidity('Password must contain a combination of letters and numbers');
+      password.querySelector('.invalid').textContent = 'Password must include letters and numbers.';
+      strengthBg.style.flexBasis = '0';
+      strengthBg.style.background = 'inherit';
+      strengthText.style.opacity = '0';
+      strengthText.style.color = '#333';
+    }
+  } else {
+    passInput.setCustomValidity('Password at Least Have 8 Characters');
+    password.querySelector('.invalid').textContent = 'Password at Least Have 8 Characters';
+    strengthBg.style.background = 'inherit';
+    strengthText.style.opacity = '0';
+  }
+}
+
+confirmPassInput.addEventListener('input', (e) => {
+  passMatch(passInput, confirmPassInput);
+})
+
+const passMatch = (passInput, confirmPassInput) => {
+  const passValue = passInput.value;
+  const confirmPassValue = confirmPassInput.value;
+  if(passValue === confirmPassValue) {
+    confirmPassInput.setCustomValidity('');
+    console.log("sama");
+  }else {
+    confirmPassInput.setCustomValidity('Passwords do not match');
+    confirmPassInput.setAttribute('title', 'Password Not Match');
+    console.log('tidak');
+  }
+}
 
 document.addEventListener('DOMContentLoaded', setTheme);
 document.addEventListener('DOMContentLoaded', section);

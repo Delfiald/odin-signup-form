@@ -14,6 +14,8 @@
   --font-size-xl: 3rem;
   --font-size-l: 1.5rem;
   --font-size-m: 1rem;
+
+  --input-width: clamp(50px, 45%, 350px);
 }
 
 * {
@@ -340,7 +342,7 @@ body {
 }
 
 .form-main .input.phone label {
-  left: 4.5rem;
+  left: 4rem;
 }
 
 .form-main .input.phone input:focus ~ label {
@@ -397,6 +399,53 @@ body {
   flex: 80%;
 }
 
+.form-main .input.password > .password-strength {
+  top: 100%;
+  margin-top: .5rem;
+  width: 100%;
+  height: 5px;
+  background: #f4f4f4;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  border: 1px solid #ccc;
+}
+
+.form-main .input.password > .password-strength .strength-background {
+  height: 100%;
+  flex: 0;
+  transition: .5s all ease;
+}
+
+.form-main .input.password > .password-strength .strength {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  color: #333;
+  opacity: 0;
+  transform: .5s all ease;
+}
+
+.form-main .input.password > .password-strength > div {
+  position: relative;
+  flex: 1;
+  gap: 5px;
+  border-radius: 5px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-main .input.password > .password-strength > div span {
+  color: #333;
+}
+
+.form-main .input.password > .password-strength > .weak {
+  background: yellow;
+}
+
 .form-main .input label {
   position: absolute;
   top: 50%;
@@ -417,6 +466,7 @@ body {
 .form-main .input input:focus ~ label,
 .form-main .input input:valid ~ label, 
 .form-main .input input:not(:placeholder-shown) ~ label {
+  left: 0;
   top: -50%;
 }
 
@@ -431,6 +481,10 @@ body {
   transition: .5s all ease;
 }
 
+.form-main .input > .hint {
+  width: 50%;
+}
+
 .form-main .input input:focus {
   --_border-color: var(--primary-color);
 }
@@ -439,19 +493,20 @@ body {
   --_border-color: var(--secondary-color);
 }
 
-.form-main .input input:focus:empty ~ div,
-.form-main .input input:focus:valid ~ div,
-.form-main .input input:invalid ~ div {
+.form-main .input input:focus:empty ~ .hint,
+.form-main .input input:focus:valid ~ .hint,
+.form-main .input input:invalid ~ .hint {
   top: -50%;
 }
 
-.form-main .input input:focus:valid ~ div {
+.form-main .input input:focus:valid ~ .hint {
   opacity: 0;
   visibility: hidden;
 }
 
 .form-main .input > div .guide-text {
   position: relative;
+  width: 100%;
 }
 
 .form-main .input > div .guide-text span {
@@ -462,19 +517,19 @@ body {
   top: 50%;
   right: 0;
   transform: translateY(-50%);
-  white-space: nowrap;
+  text-align: right;
 }
 
-input:focus:placeholder-shown ~ div .guide-text .empty,
-input:focus:invalid ~ div .guide-text .invalid,
-input:not(:placeholder-shown):invalid ~ div .guide-text .invalid {
+input:focus:placeholder-shown ~ .hint .guide-text .empty,
+input:focus:invalid ~ .hint .guide-text .invalid,
+input:not(:placeholder-shown):invalid ~ .hint .guide-text .invalid {
   opacity: 1;
   visibility: visible;
 }
 
-input:focus:not(:placeholder-shown) ~ div .guide-text .empty,
-input:focus:placeholder-shown ~ div .guide-text .invalid,
-input:focus:valid ~ div .guide-text * {
+input:focus:not(:placeholder-shown) ~ .hint .guide-text .empty,
+input:focus:placeholder-shown ~ .hint .guide-text .invalid,
+input:focus:valid ~ .hint .guide-text * {
   opacity: 0;
   visibility: hidden;
 }
@@ -601,7 +656,7 @@ input:focus:valid ~ div .guide-text * {
   background-color: #333;
   z-index: -1;
   border-radius: 5px;
-  transition: .5s all .25s ease;
+  transition: .25s all .25s ease;
   transform-origin: bottom;
   transform: scaleY(0);
 }
