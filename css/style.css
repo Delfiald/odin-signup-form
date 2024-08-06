@@ -597,6 +597,16 @@ input:focus:valid ~ .hint .guide-text * {
   justify-content: space-between;
 }
 
+.tos-bottom .tos-confirm.disabled {
+  cursor: not-allowed;
+  opacity: .7;
+}
+
+.tos-bottom .tos-confirm.disabled:hover {
+  filter: none;
+  --_primary-color: var(--color-red-200);
+}
+
 .signed-up {
   display: flex;
   flex-direction: column;

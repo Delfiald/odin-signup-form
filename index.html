@@ -52,7 +52,7 @@
           <div class="form-body">
             <div class="form-main">
               <div class="input">
-                <input type="text" id="first_name" name="first_name" title="Name should not contain numbers" pattern="^[A-Za-z. ]+$" required placeholder="John">
+                <input type="text" id="first_name" name="first_name" title="Name should not contain numbers or symbols" pattern="^[A-Za-z. ]+$" required placeholder="John">
                 <label for="first_name">
                   First Name
                 </label>
@@ -64,7 +64,7 @@
                 </div>
               </div>
               <div class="input">
-                <input type="text" id="last_name" name="last_name" title="Name should not contain numbers" pattern="^[A-Za-z. ]+$" required placeholder="Doe">
+                <input type="text" id="last_name" name="last_name" title="Name should not contain numbers or symbols" pattern="^[A-Za-z. ]+$" required placeholder="Doe">
                 <label for="last_name">Last Name</label>
                 <div class="hint">
                   <div class="guide-text">
@@ -178,7 +178,7 @@
         </div>
         <div class="tos-bottom">
           <button type="button" id="tos-back">Back</button>
-          <button type="button" id="tos-confirm">Confirm</button>
+          <button type="button" class="tos-confirm disabled" id="tos-confirm">Confirm</button>
         </div>
       </section>
 

@@ -78,11 +78,30 @@ createButton.addEventListener('click', (e) => {
   }
 })
 
+const tosAgree = document.getElementById('tos-agree');
+const tosAgreePrivacy = document.getElementById('tos-agree-privacy');
+
+const tosValidation = document.querySelector('.tos-validation');
+
+let tosValid = false;
+
+tosValidation.addEventListener('click', (e) => {
+  console.log(tosAgreePrivacy.checked);
+  if(tosAgreePrivacy.checked && tosAgree.checked) {
+    tosConfirm.classList.toggle('disabled');
+    tosValid = true;
+  }else{
+    tosValid = false;
+  }
+})
+
 tosConfirm.addEventListener('click', (e) => {
-  if(tos.className === 'tos show'){
-    container.classList.add('registered');
-    tos.classList.toggle('show');
-    signed.classList.toggle('show');
+  if(tosValid) {
+    if(tos.className === 'tos show'){
+      container.classList.add('registered');
+      tos.classList.toggle('show');
+      signed.classList.toggle('show');
+    }
   }
 })
 
