@@ -27,21 +27,30 @@ const tosConfirm = document.getElementById('tos-confirm');
 const container = document.querySelector('.container');
 
 signUpButton.addEventListener('click', (e) => {
-  // e.preventDefault();
-  // if(signUp.className === 'sign-up show'){
-  //   signUp.classList.toggle('show');
-  //   tos.classList.toggle('show');
-
-  //   // Hero
-  //   heroWelcome.classList.add('hide');
-  //   heroWelcome.classList.remove('show');
-  //   heroTos.classList.add('show');
-  //   heroTos.classList.remove('hide');
-  // }else{
-  //   console.log(tos.className);
-  // }
+  e.preventDefault();
+  const inputs = signUp.querySelectorAll('input');
+  let valid = true;
   
-  passCheck();
+  for (const item of inputs) {
+    if (!item.checkValidity()) {
+        item.reportValidity();
+        valid = false;
+        break;
+    }
+  }
+
+  if(valid) {
+    if(signUp.className === 'sign-up show'){
+      signUp.classList.toggle('show');
+      tos.classList.toggle('show');
+  
+      // Hero
+      heroWelcome.classList.add('hide');
+      heroWelcome.classList.remove('show');
+      heroTos.classList.add('show');
+      heroTos.classList.remove('hide');
+    }
+  }
 })
 
 signUpBackButton.addEventListener('click', (e) => {
@@ -129,7 +138,7 @@ const passwordStrength = (passInput) => {
           strengthBg.style.background = 'red';
           strengthBg.style.flexBasis = '75%';
           strengthText.textContent = 'Strong';
-          if(passValue.length >= 12) {
+          if(passValue.length >= 15) {
             strengthBg.style.background = 'darkred';
             strengthBg.style.flexBasis = '100%';
             strengthText.textContent = 'Chad';
