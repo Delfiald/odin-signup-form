@@ -197,5 +197,18 @@ const passMatch = (passInput, confirmPassInput) => {
   }
 }
 
+const modeTrigger = document.querySelector('.mode-trigger');
+
+modeTrigger.addEventListener('click', (e) => {
+  const bulb = e.target.closest('.bulb-wrapper .bulb');
+
+  if(bulb) {
+    modeTrigger.classList.add('triggered');
+    setTimeout(() => {
+      modeTrigger.classList.remove('triggered');
+    }, 1000)
+  }
+})
+
 document.addEventListener('DOMContentLoaded', setTheme);
 document.addEventListener('DOMContentLoaded', section);

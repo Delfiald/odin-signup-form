@@ -677,6 +677,70 @@ input:focus:valid ~ .hint .guide-text * {
   transition-delay: 0s;
 }
 
+.mode-trigger {
+  position: absolute;
+  top: -25px;
+  right: 5%;
+  max-width: 5px;
+  width: 100%;
+  min-height: 250px;
+  background: #ccc;
+  transform-origin: top;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.mode-trigger.triggered {
+  animation: bulb-trigger .5s ease forwards;
+}
+
+.mode-trigger .bulb-wrapper {
+  position: relative;
+  width: 30px;
+  height: 30px;
+}
+
+.mode-trigger .bulb {
+  position: absolute;
+  left: 0;
+  bottom: -100%;
+  transform: rotate(180deg);
+  cursor: pointer;
+  transition: .5s all ease;
+}
+
+.light .mode-trigger .bulb:hover .turned-off {
+  opacity: 1;
+}
+
+.light .mode-trigger .bulb:hover .bulb-border path {
+  fill: #E6C200;
+}
+
+.light .mode-trigger .bulb .turned-off {
+  transition: .5s all ease;
+  opacity: 0;
+}
+
+.light .mode-trigger .bulb .bulb-path {
+  fill: #E2E3E5;
+}
+
+.mode-trigger .bulb .bulb-path {
+  fill: #FFD700;
+}
+
+.light .mode-trigger .bulb .bulb-border path {
+  fill: #B6B6B6;
+}
+
+.mode-trigger .bulb .bulb-border path {
+  fill: #E6C200;
+  transition: .5s all ease;
+}
+
 @keyframes main-fade {
   0%{
     opacity: 0;
@@ -734,6 +798,20 @@ input:focus:valid ~ .hint .guide-text * {
 
   100% {
     opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bulb-trigger {
+  0% {
+    transform: translateY(0);
+  }
+
+  75% {
+    transform: translateY(25px);
+  }
+
+  100% {
     transform: translateY(0);
   }
 }
