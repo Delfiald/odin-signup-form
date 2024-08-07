@@ -88,9 +88,10 @@ let tosValid = false;
 tosValidation.addEventListener('click', (e) => {
   console.log(tosAgreePrivacy.checked);
   if(tosAgreePrivacy.checked && tosAgree.checked) {
-    tosConfirm.classList.toggle('disabled');
+    tosConfirm.classList.remove('disabled');
     tosValid = true;
   }else{
+    tosConfirm.classList.add('disabled');
     tosValid = false;
   }
 })
@@ -198,16 +199,35 @@ const passMatch = (passInput, confirmPassInput) => {
 }
 
 const modeTrigger = document.querySelector('.mode-trigger');
+const modeTransitions = document.querySelector('.mode-transitions');
+
+let isModeTrigger = false;
 
 modeTrigger.addEventListener('click', (e) => {
+  if(isModeTrigger) return;
+
   const bulb = e.target.closest('.bulb-wrapper .bulb');
 
   if(bulb) {
     modeTrigger.classList.add('triggered');
+    modeTransitions.classList.add('triggered');
     setTimeout(() => {
       modeTrigger.classList.remove('triggered');
     }, 1000)
+    setTimeout(() => {
+      modeTransitions.classList.remove('triggered');
+    }, 3000)
   }
+
+  const root = document.documentElement;
+
+  root.classList.toggle('dark');
+  root.classList.toggle('light');
+
+  isModeTrigger = true;
+  setTimeout(() => {
+    isModeTrigger = false;
+  }, 3000);
 })
 
 document.addEventListener('DOMContentLoaded', setTheme);
