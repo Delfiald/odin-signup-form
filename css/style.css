@@ -1,53 +1,54 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
+:root {
+  --index-position: 0;
+  
+  --color-red-200: #F53C50;
+  --color-red-400: #c43040;
+  --color-red-600: #932430;
+
+  --color-green-200: #2be5c0;
+  --color-green-400: #22b799;
+  --color-green-600: #198973;
+  
+  --primary-color: var(--color-red-200);
+  --secondary-color: var(--color-green-200);
+
+  --font-size-xl: 3rem;
+  --font-size-l: 1.5rem;
+  --font-size-m: 1rem;
+
+  --input-width: clamp(50px, 45%, 350px);
+}
+
+/* Light Mode */
 :root.light {
   --text-color-primary: #333;
   --text-color-secondary: #fff;
+  
   --body-color: #f4f4f4;
   --background-color: #fff;
-  --color-red-200: #e52b50;
-  --color-red-400: #ce2648;
-  --color-red-600: #b72240;
-  --color-green-200: #2be5c0;
-  --color-green-400: #22b799;
-  --color-green-600: #198973;
-  --primary-color: var(--color-red-200);
-  --secondary-color: var(--color-green-200);
-
-  --font-size-xl: 3rem;
-  --font-size-l: 1.5rem;
-  --font-size-m: 1rem;
-
-  --input-width: clamp(50px, 45%, 350px);
+  --input-background: #fff;
 }
 
+/* Dark Mode */
 :root.dark {
   --text-color-primary: #fff;
-  --text-color-secondary: #333;
+  --text-color-secondary: #fff;
+
   --body-color: #000;
   --background-color: #333;
-  --color-red-200: #e52b50;
-  --color-red-400: #ce2648;
-  --color-red-600: #b72240;
-  --color-green-200: #2be5c0;
-  --color-green-400: #22b799;
-  --color-green-600: #198973;
-  --primary-color: var(--color-red-200);
-  --secondary-color: var(--color-green-200);
-
-  --font-size-xl: 3rem;
-  --font-size-l: 1.5rem;
-  --font-size-m: 1rem;
-
-  --input-width: clamp(50px, 45%, 350px);
+  --input-background: #000;
 }
 
+/* Cleaning */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* Utilities */
 a {
   text-decoration: none;
   color: var(--primary-color);
@@ -55,7 +56,7 @@ a {
 
 input {
   color: var(--text-color-primary);
-  background: var(--background-color);
+  background: var(--input-background);
   display: block;
   padding: 1em;
   border-radius: 5px;
@@ -103,6 +104,7 @@ body {
   overflow: hidden;
 }
 
+/* Container */
 .container {
   position: relative;
   max-width: 75vw;
@@ -115,6 +117,7 @@ body {
   justify-content: center;
 }
 
+/* Header */
 .header {
   background: url('../img/cookingBook.png') center center/cover no-repeat;
   position: relative;
@@ -177,9 +180,8 @@ body {
   display: flex;
   justify-content: center;
   flex-direction: column;
-  background: #fff;
   animation: main-fade .5s ease-in forwards;
-  transition: 1s all ease;
+  /* transition: 1s all .5s ease; */
 }
 
 .container.registered .header {
@@ -213,7 +215,7 @@ body {
   opacity: 1;
   visibility: visible;
   transform: translateX(0);
-  transition-delay: .5s;
+  /* transition-delay: .5s; */
 }
 
 .options {
@@ -721,6 +723,12 @@ input:focus:valid ~ .hint .guide-text * {
   z-index: 3;
 }
 
+.mode-trigger.start {
+  transform-origin: top;
+  transform: translateY(-110%);
+  animation: bulb-show 1s ease 1.5s forwards;
+}
+
 .mode-trigger.triggered {
   animation: bulb-trigger .5s ease forwards;
 }
@@ -878,12 +886,28 @@ input:focus:valid ~ .hint .guide-text * {
   }
 }
 
+@keyframes bulb-show {
+  0% {
+    transform-origin: top;
+    transform: translateY(-100%);
+  }
+
+  75% {
+    transform: translateY(10%);
+  }
+
+  100% {
+    transform-origin: top;
+    transform: translateY(0);
+  }
+}
+
 @keyframes bulb-trigger {
   0% {
     transform: translateY(0);
   }
 
-  25% {
+  50% {
     transform: translateY(25px);
   }
 

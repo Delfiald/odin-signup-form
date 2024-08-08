@@ -13,6 +13,9 @@ const section = () => {
   if(signUp.className === 'sign-up'){
     signUp.classList.toggle('show');
   }
+  setTimeout(() => {
+    modeTrigger.classList.remove('start');
+  },2500);
 }
 
 const signUpButton = document.getElementById('sign-up-btn');
@@ -149,7 +152,6 @@ const passwordStrength = (passInput) => {
       strengthBg.style.flexBasis = '25%';
       strengthText.textContent = 'Weak';
       strengthText.style.opacity = '1';
-      strengthText.style.color = '#333';
       if((containsLowercase && containsUppercase) || (containsSymbol && containsLowercase) || (containsUppercase && containsSymbol)) {
         strengthBg.style.background = 'green';
         strengthBg.style.flexBasis = '50%';
@@ -171,7 +173,6 @@ const passwordStrength = (passInput) => {
       strengthBg.style.flexBasis = '0';
       strengthBg.style.background = 'inherit';
       strengthText.style.opacity = '0';
-      strengthText.style.color = '#333';
     }
   } else {
     passInput.setCustomValidity('Password at Least Have 8 Characters');
@@ -217,17 +218,18 @@ modeTrigger.addEventListener('click', (e) => {
     setTimeout(() => {
       modeTransitions.classList.remove('triggered');
     }, 3000)
+
+    
+    const root = document.documentElement;
+
+    root.classList.toggle('dark');
+    root.classList.toggle('light');
+
+    isModeTrigger = true;
+    setTimeout(() => {
+      isModeTrigger = false;
+    }, 3000);
   }
-
-  const root = document.documentElement;
-
-  root.classList.toggle('dark');
-  root.classList.toggle('light');
-
-  isModeTrigger = true;
-  setTimeout(() => {
-    isModeTrigger = false;
-  }, 3000);
 })
 
 document.addEventListener('DOMContentLoaded', setTheme);
