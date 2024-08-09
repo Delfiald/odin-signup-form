@@ -132,7 +132,7 @@ button:hover {
   cursor: pointer;
 }
 
-button:focus {
+button:active {
   --primary-color: var(--color-red-600);
   cursor: pointer;
 }
@@ -195,8 +195,9 @@ body {
   min-height: inherit;
   object-fit: cover;
   z-index: calc(var(--index-position) - 1);
-  transition: .5s background ease;
+  transition: 1s background-image ease;
   animation: header-img 10s ease infinite;
+  opacity: 1;
 }
 
 .header .header-img.paused {
@@ -705,6 +706,29 @@ input:focus:valid ~ .hint .guide-text * {
   --_primary-color: var(--color-red-200);
 }
 
+/* Loading */
+.main > section.signed-up-loading {
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  transform: translateX(0);
+  transition: .5s all ease;
+}
+
+section.signed-up-loading.show .loading-icon {
+  animation: loading-icon .25s ease infinite alternate;
+}
+
+section.signed-up-loading .loading-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+section.signed-up-loading.show .loading-text * {
+  animation: loading-text .25s ease forwards;
+}
+
 /* Signed Up */
 .main > section.signed-up {
   align-items: center;
@@ -730,10 +754,6 @@ input:focus:valid ~ .hint .guide-text * {
   width: 100%;
 }
 
-.login-button-wrapper {
-  position: relative;
-}
-
 .registered-body button {
   font-size: 1.5rem;
   font-weight: 700;
@@ -746,10 +766,16 @@ input:focus:valid ~ .hint .guide-text * {
 .registered-body button:hover {
   transform: translateY(-15%);
   transition-delay: 0s;
+  --primary-color: var(--color-red-200);
 }
 
 .registered-body button:active {
   transform: translateY(15%);
+  --primary-color: var(--color-red-600);
+}
+
+.login-button-wrapper {
+  position: relative;
 }
 
 .login-button-wrapper::after {
@@ -968,6 +994,31 @@ input:focus:valid ~ .hint .guide-text * {
   }
 }
 
+@keyframes loading-icon {
+  0% {
+    transform: rotate(22.5deg);
+  }
+
+  100% {
+    transform: rotate(-22.5deg);
+  }
+}
+
+@keyframes loading-text {
+  0%{
+    transform: translateY(0);
+  }
+
+  50%{
+    transform: translateY(-1ch);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* Header Animations */
 @keyframes header-img {
   0% {
     transform: translate(var(--header-img-original-pos), var(--header-img-original-pos));
@@ -977,11 +1028,11 @@ input:focus:valid ~ .hint .guide-text * {
     transform: translate(var(--header-img-original-pos), var(--header-img-original-pos) scale(1.2));
   }
 
-  90% {
-    transform: translate(var(--header-img-latest-pos), var(--header-img-latest-pos)) scale(1.2);
-  }
-
   100% {
     transform: translate(var(--header-img-latest-pos), var(--header-img-latest-pos)) scale(1.2);
   }
+}
+
+@media (max-width: 1100px) {
+  
 }

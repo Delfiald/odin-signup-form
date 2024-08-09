@@ -99,12 +99,24 @@ tosValidation.addEventListener('click', (e) => {
   }
 })
 
+const loadingAnim = document.querySelector('.signed-up-loading');
+
+const loadingTexts = document.querySelectorAll('.loading-text *');
+
 tosConfirm.addEventListener('click', (e) => {
   if(tosValid) {
     if(tos.className === 'tos show'){
-      container.classList.add('registered');
       tos.classList.toggle('show');
-      signed.classList.toggle('show');
+      tos.style.transform = 'translateX(0)';
+      loadingAnim.classList.toggle('show');
+      loadingTexts.forEach((item, index) => {
+        item.style.animationDelay = `${index * .05}s`;
+      })
+      setTimeout(() => {
+        loadingAnim.classList.toggle('show');
+        container.classList.add('registered');
+        signed.classList.toggle('show');
+      }, 2000)
     }
   }
 })
@@ -247,7 +259,10 @@ headerImg.addEventListener('animationiteration', (e) => {
     headerImg.style.animationDirection = 'reverse';
   }
 
-  headerImg.style.background = `url('../img/${imagesList[index]}') center center/cover no-repeat`;
+  setTimeout(() => {
+    headerImg.style.background = `url('../img/${imagesList[index]}') center center/cover no-repeat`;
+  }, 500)
+
 });
 
 header.addEventListener('mouseleave', (e) => {
