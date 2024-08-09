@@ -232,5 +232,32 @@ modeTrigger.addEventListener('click', (e) => {
   }
 })
 
+const header = document.querySelector('.header');
+const headerImg = document.querySelector('.header-img');
+
+const imagesList = ['cookingBook.png', 'cookingBook2.jpg'];
+let index = 0;
+
+headerImg.addEventListener('animationiteration', (e) => {
+  if(index === 1) {
+    index--;
+    headerImg.style.animationDirection = 'normal';
+  }else {
+    index++;
+    headerImg.style.animationDirection = 'reverse';
+  }
+
+  headerImg.style.background = `url('../img/${imagesList[index]}') center center/cover no-repeat`;
+});
+
+header.addEventListener('mouseleave', (e) => {
+  console.log("paused");
+  headerImg.classList.add('paused');
+})
+
+header.addEventListener('mouseenter', (e) => {
+  headerImg.classList.remove('paused');
+})
+
 document.addEventListener('DOMContentLoaded', setTheme);
 document.addEventListener('DOMContentLoaded', section);
