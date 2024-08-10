@@ -101,7 +101,8 @@ tosValidation.addEventListener('click', (e) => {
 
 const loadingAnim = document.querySelector('.signed-up-loading');
 
-const loadingTexts = document.querySelectorAll('.loading-text *');
+const loadingText = document.querySelector('.loading-text');
+const loadingTextItems = document.querySelectorAll('.loading-text *');
 
 tosConfirm.addEventListener('click', (e) => {
   if(tosValid) {
@@ -109,17 +110,30 @@ tosConfirm.addEventListener('click', (e) => {
       tos.classList.toggle('show');
       tos.style.transform = 'translateX(0)';
       loadingAnim.classList.toggle('show');
-      loadingTexts.forEach((item, index) => {
+      loadingText.classList.add('start');
+
+      loadingTextItems.forEach((item, index) => {
         item.style.animationDelay = `${index * .05}s`;
       })
+
       setTimeout(() => {
         loadingAnim.classList.toggle('show');
         container.classList.add('registered');
         signed.classList.toggle('show');
-      }, 2000)
+      }, 2500)
     }
   }
 })
+
+loadingTextItems[loadingTextItems.length - 1].addEventListener('animationend', restartAnimation);
+
+function restartAnimation() {
+  loadingText.classList.remove('start');
+
+  void loadingText.offsetWidth;
+
+  loadingText.classList.add('start');
+}
 
 const getCode = document.querySelector('.select-codes');
 

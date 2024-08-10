@@ -57,7 +57,7 @@
   --background-color: #333;
   --input-background: #000;
 
-  --box-shadow-color: #333;
+  --box-shadow-color: #000;
   --button-shadow-color: #000;
   --bulb-color: #FFD700;
   --bulb-layer-color: #E6C200;
@@ -254,7 +254,7 @@ body {
   justify-content: center;
   flex-direction: column;
   animation: main-fade .5s ease-in forwards;
-  /* transition: 1s all ease; */
+  transition: 1s all ease;
 }
 
 .container.registered .main {
@@ -725,7 +725,7 @@ section.signed-up-loading .loading-text {
   justify-content: center;
 }
 
-section.signed-up-loading.show .loading-text * {
+section.signed-up-loading.show .loading-text.start * {
   animation: loading-text .25s ease forwards;
 }
 
@@ -734,16 +734,25 @@ section.signed-up-loading.show .loading-text * {
   align-items: center;
   justify-content: center;
   border-radius: 20px;
-  box-shadow: 5px 5px 15px var(--box-shadow-color), -5px -5px 15px var(--box-shadow-color);
+  box-shadow: 5px 5px 5px var(--box-shadow-color), -5px -5px 5px var(--box-shadow-color);
   transition: 2s all ease;
   transform-origin: bottom;
   transform: translateX(0);
+}
+
+.container section.signed-up > *{
+  transition: 2s all ease;
+}
+
+.registered section.signed-up > * {
+  opacity: 1;
 }
 
 .registered-header {
   display: flex;
   flex-direction: column;
   align-items: center;
+  opacity: 0;
 }
 
 .registered-body {
@@ -752,6 +761,7 @@ section.signed-up-loading.show .loading-text * {
   align-items: center;
   justify-content: center;
   width: 100%;
+  opacity: 0;
 }
 
 .registered-body button {
