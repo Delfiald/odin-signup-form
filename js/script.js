@@ -29,8 +29,18 @@ const tosConfirm = document.getElementById('tos-confirm');
 
 const container = document.querySelector('.container');
 
+const popUp = document.querySelector('.pop-up');
+
+popUp.addEventListener('click', (e) => {
+  const closeBtn = e.target.closest('.close');
+  if(closeBtn) {
+    popUp.classList.remove('show');
+  }
+})
+
 signUpButton.addEventListener('click', (e) => {
   e.preventDefault();
+
   const inputs = signUp.querySelectorAll('input');
   let valid = true;
   
@@ -134,6 +144,44 @@ function restartAnimation() {
 
   loadingText.classList.add('start');
 }
+
+const loginBtn = document.querySelector('.login-button-wrapper');
+const login = document.querySelector('.login')
+
+loginBtn.addEventListener('click', (e) => {
+  login.classList.add('show');
+  signed.classList.remove('show');
+
+  const inputs = signUp.querySelectorAll('input');
+  
+  for (const item of inputs) {
+    item.value = '';
+    passCheck();
+  }
+})
+
+container.addEventListener('click', (e) => {
+  const loginButton = e.target.closest('.login-button');
+
+  if(loginButton) {
+    container.classList.add('registered');
+    login.classList.add('show');
+    signed.classList.remove('show');
+  }
+
+  if(login.classList.contains('show')) {
+    const signUpBtn = e.target.closest('.sign-up-account');
+    if(signUpBtn) {
+      container.classList.remove('registered');
+      signed.classList.remove('show');
+      login.classList.remove('show');
+
+      if(!signUp.classList.contains('show') && !options.classList.contains('show')) {
+        signUp.classList.add('show');
+      }
+    }
+  }
+})
 
 const getCode = document.querySelector('.select-codes');
 

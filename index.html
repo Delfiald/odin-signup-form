@@ -44,10 +44,10 @@
           <button type="button" id="create-account">
               <h3>Create Account</h3>
           </button>
-          <p>Already have an account? <a href="login.html">Log in</a></p>
+          <p>Already have an account? <a class="login-button" href="#">Log in</a></p>
         </div>
       </section>
-      <section class="sign-up">
+      <section class="sign-up show">
         <form action="" method="" class="form-wrapper">
           <div class="form-header">
             <h2>Hello! Please tell us a little bit about yourself.</h2>
@@ -141,7 +141,7 @@
             <div class="form-bottom">
               <button id="sign-up-btn" type="submit">Sign Up</button>
               <button id="options-btn" type="button">Sign Up with Social Media</button>
-              <p>Already have an account? <a href="login.html">Log in</a></p>
+              <p>Already have an account? <a class="login-button" href="#">Log in</a></p>
             </div>
           </div>
         </form>
@@ -224,6 +224,39 @@
           </div>
         </div>
       </section>
+
+      <section class="login">
+        <form action="" class="form-wrapper">
+          <div class="form-header">
+            <h2 class="xl-header">Login</h2>
+          </div>
+          <div class="form-body">
+            <div class="form-main">
+              <div class="input">
+                <input type="email" id="email-log" name="email" title="Insert Your Email" required placeholder="johndoe@email.com">
+                <label for="email-log">Email</label>
+              </div>
+              <div class="input password">
+                <input type="password" id="password-log" name="password" minlength="8" placeholder="Password" required>
+                <label for="password-log">Password</label>
+              </div>
+            </div>
+            <div class="form-bottom">
+              <div>
+                <div class="remember-me">
+                  <input type="checkbox" id="remember" name="remember">
+                  <label for="remember">Remember me</label>
+                </div>
+                <div class="forgot-password">
+                  <a href="">Forgot Password?</a>
+                </div>
+              </div>
+              <button id="log-in-btn" type="submit">Log In</button>
+              <p>Don't Have an Account? <a class="sign-up-account" href="#">Sign Up</a></p>
+            </div>
+          </div>
+        </form>
+      </section>
     </main>
   </div>
 
@@ -268,6 +301,19 @@
       <img src="assets/sun.svg" alt="Sun" class="sun">
       <img src="assets/moon.svg" alt="Moon" class="moon">
     </div>
+  </div>
+
+  <div class="pop-up">
+    <div class="regis-err">
+      <div class="error-icon">
+        <i class="fas fa-x fa-5x"></i>
+      </div>
+      <div class="error-text">
+        <h3>Email Already Registered</h3>
+      </div>
+      <button type="button" class="close">Close</button>
+    </div>
+    <!-- <div class="login-err"></div> -->
   </div>
 
   <script src="js/script.js"></script>

@@ -177,7 +177,7 @@ body {
   align-items: center;
   justify-content: center;
   border-radius: 10% 0 0 10%;
-  transition: .5s all ease;
+  transition: 1s all ease;
   color: #fff;
   overflow: hidden;
 }
@@ -643,13 +643,13 @@ input:focus:valid ~ .hint .guide-text * {
   gap: 1rem;
 }
 
-.form-bottom > button:nth-child(2) {
+.form-bottom > button:nth-of-type(2) {
   background: #fff;
   color: var(--color-red-200);
   border: 1px solid #ccc;
 }
 
-.form-bottom > button:nth-child(2):hover {
+.form-bottom > button:nth-of-type(2):hover {
   filter: brightness(.8);
 }
 
@@ -786,6 +786,8 @@ section.signed-up-loading.show .loading-text.start * {
 
 .login-button-wrapper {
   position: relative;
+  transform: scale(1);
+  transition: 1s all ease;
 }
 
 .login-button-wrapper::after {
@@ -928,6 +930,193 @@ section.signed-up-loading.show .loading-text.start * {
   opacity: 0;
   transition: 1s opacity 1s ease;
   animation: icons-fade 1s ease 1s forwards;
+}
+
+/* Pop up */
+.pop-up {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  z-index: calc(var(--index-position-mode-transitions) + 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: .5s all ease;
+}
+
+.pop-up.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.pop-up::before {
+  position: absolute;
+  content: '';
+  width: inherit;
+  height: inherit;
+  background: #333;
+  opacity: .7;
+}
+
+.pop-up > div {
+  color: var(--text-color-primary);
+  background: var(--background-color);
+  z-index: calc(var(--index-position-mode-transitions) + 2);
+  display: flex;
+  flex-flow: column;
+  padding: 1rem;
+  border-radius: 10px;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  max-width: 40vw;
+  width: 100%;
+  min-height: 50vh;
+  opacity: 0;
+  visibility: hidden;
+  transform-origin: center;
+  transform: scale(0);
+  transition: .5s all ease;
+}
+
+.pop-up.show > div {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+}
+
+.pop-up > div .error-icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 100px;
+  padding: 1rem;
+  margin-top: 1rem;
+  color: var(--color-red-200);
+}
+
+.pop-up > div .error-icon:before {
+  position: absolute;
+  content: '';
+  width: 100%;
+  height: 100%;
+  border: 1px solid var(--color-red-200);
+  border-radius: 50%;
+  padding: 1rem;
+}
+
+.pop-up > div .error-text {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+/* Login */
+.main .login {
+  transform: translateX(0);
+  transition: .5s all ease;
+  justify-content: center;
+  align-items: center;
+}
+
+.main .login .form-wrapper {
+  border: 1px solid #ccc;
+  padding: 1rem;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  box-shadow: 2px 2px 5px #ccc, -2px -2px 5px #ccc;
+  opacity: 0;
+  transition: .5s opacity ease;
+  background: var(--background-color);
+}
+
+.main .login.show .form-wrapper {
+  transition-delay: 1s;
+  opacity: 1;
+}
+
+.main .login .form-header {
+  opacity: 0;
+  transition: .5s all ease;
+}
+
+.main .login.show .form-header {
+  opacity: 1;
+  transition-delay: 1s;
+}
+
+.main .login .form-body {
+  gap: 1.5rem;
+}
+
+.main .login .form-bottom {
+  width: 100%;
+}
+
+.main .login .form-bottom > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+
+.main .login .form-bottom > div > div {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.main .login .input {
+  width: 100%;
+  opacity: 0;
+  transition: .5s all ease;
+  transform: translateY(25px);
+}
+
+.main .login .input:first-child {
+  transition-delay: 0s;
+}
+
+.main .login .input:last-child {
+  transition-delay: 0s;
+}
+.main .login.show .input:first-child {
+  transition-delay: 1s;
+}
+
+.main .login.show .input:last-child {
+  transition-delay: 1.25s;
+}
+
+.main .login .form-bottom {
+  opacity: 0;
+  transform: translateY(25px);
+  transition: .5s all ease;
+  transition-delay: 0s;
+}
+
+.main .login.show .form-bottom {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 1.5s;
+}
+
+.main .login.show .input {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.login.show {
+  opacity: 1;
+  visibility: visible;
+  z-index: var(--index-position) + 1;
 }
 
 /* Animation */
