@@ -58,10 +58,12 @@ signUpButton.addEventListener('click', (e) => {
       tos.classList.toggle('show');
   
       // Hero
-      heroWelcome.classList.add('hide');
-      heroWelcome.classList.remove('show');
-      heroTos.classList.add('show');
-      heroTos.classList.remove('hide');
+      if(tos.classList.contains('show')) {
+        heroWelcome.classList.add('hide');
+        heroWelcome.classList.remove('show');
+        heroTos.classList.add('show');
+        heroTos.classList.remove('hide');
+      }
     }
   }
 })
@@ -178,6 +180,10 @@ container.addEventListener('click', (e) => {
 
       if(!signUp.classList.contains('show') && !options.classList.contains('show')) {
         signUp.classList.add('show');
+        heroWelcome.classList.remove('hide');
+        heroWelcome.classList.add('show');
+        heroTos.classList.remove('show');
+        heroTos.classList.add('hide');
       }
     }
   }
