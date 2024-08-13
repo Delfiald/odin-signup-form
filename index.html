@@ -3,11 +3,347 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="css/style.css">
+  <link rel="preload" href="img/cookingBook.png" as="image">
+  <link rel="preload" href="img/cookingBook2.jpg" as="image">
   <title>Odin Sign-up Form</title>
 </head>
 <body>
-  <h1>Sign Up Form</h1>
+  <div class="container">
+    <header class="header">
+      <div class="header-img paused"></div>
+      <div class="hero welcome show">
+        <h1 class="xl-header">Welcome</h1>
+      </div>
+      <div class="hero terms-of-services">
+        <h1 class="l-header">Terms of Services</h1>
+      </div>
+      <div class="hero loading">
+        <h1 class="l-header">Please Wait..</h1>
+      </div>
+    </header>
+    <main class="main">
+      <section class="options">
+        <div class="options-header xl-header">
+          <h2>Sign Up</h2>
+        </div>
+        <div class="options-body">
+          <a class="option google" href="https://google.com">
+            <i class="fab fa-google"></i>
+            <h3>Sign Up with Google</h3>
+          </a>
+          <a class="option github">
+            <i class="fab fa-github"></i>
+            <h3>Sign Up with Github</h3>
+          </a>
+          <a class="option facebook">
+            <i class="fab fa-facebook"></i>
+            <h3>Sign Up with Facebook</h3>
+          </a>
+          <div>
+            <h3>or</h3>
+          </div>
+          <button type="button" id="create-account">
+              <h3>Create Account</h3>
+          </button>
+          <p>Already have an account? <a class="login-button" href="#">Log in</a></p>
+        </div>
+      </section>
+      <section class="sign-up show">
+        <form action="" method="" class="form-wrapper">
+          <div class="form-header">
+            <h2>Hello! Please tell us a little bit about yourself.</h2>
+          </div>
+          <div class="form-body">
+            <div class="form-main">
+              <div class="input">
+                <input type="text" id="first_name" name="first_name" title="Name should not contain numbers or symbols" pattern="^[A-Za-z. ]+$" required placeholder="John">
+                <label for="first_name">
+                  First Name
+                </label>
+                <div class="hint">
+                  <div class="guide-text">
+                    <span class="empty">*At least you have a name lol</span>
+                    <span class="invalid">*Are you kidding?</span>
+                  </div>
+                </div>
+              </div>
+              <div class="input">
+                <input type="text" id="last_name" name="last_name" title="Name should not contain numbers or symbols" pattern="^[A-Za-z. ]+$" required placeholder="Doe">
+                <label for="last_name">Last Name</label>
+                <div class="hint">
+                  <div class="guide-text">
+                    <span class="empty">*You have family?</span>
+                    <span class="invalid">*Are you kidding?</span>
+                  </div>
+                </div>
+              </div>
+              <div class="input">
+                <input type="email" id="email" name="email" title="Insert Your Email" required placeholder="johndoe@email.com">
+                <label for="email">Email</label>
+                <div class="hint">
+                  <div class="guide-text">
+                    <span class="empty">*Insert any email</span>
+                    <span class="invalid">*Enter Complete Email Format</span>
+                  </div>
+                </div>
+              </div>
+              <div class="input phone">
+                <div class="select-codes">
+                  <div class="select-button">
+                    <span class="code-active">+1</span>
+                    <i class="fas fa-chevron-down"></i>
+                    <i class="fas fa-chevron-up"></i>
+                  </div>
+                  <div class="options-wrapper">
+                    <div class="code" data-value="+1">+1</div>
+                    <div class="code" data-value="+2">+2</div>
+                    <div class="code" data-value="+61">+61</div>
+                    <div class="code" data-value="+62">+62</div>
+                    <div class="code" data-value="+81">+81</div>
+                    <div class="code" data-value="+82">+82</div>
+                  </div>
+                </div>
+                <input type="text" id="phone" name="phone" minlength="10" title="Phone number should only contain digits and be 10-15 characters long" pattern="^\d+$" required placeholder="Your Phone Number">
+                <label for="phone">Phone Number</label>
+                <div class="hint">
+                  <div class="guide-text">
+                    <span class="empty">*Can i get your number?</span>
+                    <span class="invalid">*Please</span>
+                  </div>
+                </div>
+              </div>
+              <div class="input password">
+                <input type="password" id="password" name="password" minlength="8" placeholder="Password" required>
+                <label for="password">Password</label>
+                <div class="hint">
+                  <div class="guide-text">
+                    <span class="empty">*Enter Your Password</span>
+                    <span class="invalid">*Password at Least Have 8 Characters</span>
+                  </div>
+                </div>
+                <div class="password-strength">
+                  <div class="strength-background">
+                    <span class="strength">Weak</span>
+                  </div>
+                </div>
+              </div>
+              <div class="input confirm-password">
+                <input type="password" id="confirm-password" name="confirm-password" minlength="8" placeholder="Confirm Password" required>
+                <label for="confirm-password">Confirm Password</label>
+                <div class="hint">
+                  <div class="guide-text">
+                    <span class="empty">*Repeat your password</span>
+                    <span class="invalid">*Password not matched</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-bottom">
+              <button id="sign-up-btn" type="submit">Sign Up</button>
+              <button id="options-btn" type="button">Sign Up with Social Media</button>
+              <p>Already have an account? <a class="login-button" href="#">Log in</a></p>
+            </div>
+          </div>
+        </form>
+      </section>
+      
+      <section class="tos">
+        <div class="tos-body">
+          <div class="tos-header">
+            <h2>Terms of Service (ToS)</h2>
+          </div>
+          <div class="tos-text">
+            <ol>
+              <li>
+                <h3>Introduction</h3>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quidem sint temporibus rem blanditiis, natus ut magni unde? Magni dolorum eveniet ab atque esse quidem, impedit quod ut suscipit natus magnam sequi doloremque voluptate? Adipisci molestiae nemo ipsum dicta nihil perferendis dignissimos nesciunt quam impedit sunt animi, a odio, deserunt, iusto cum ducimus. Reprehenderit id ipsum odit earum temporibus omnis praesentium optio sit. Inventore blanditiis quia rerum, maxime repellat officia nisi in doloremque autem vel. Illum, dolore ratione odit nulla eum eius earum. Voluptatibus libero, ipsum qui vero deleniti, maiores facilis unde commodi vitae vel odit? Dolorum perferendis ipsam totam molestiae delectus odio eligendi repellat aliquam qui adipisci. Nulla quae nihil laborum officia facere dolor voluptate, velit adipisci, quidem ex rem aliquid! Libero consequatur suscipit esse ad atque asperiores culpa debitis, harum provident eius corrupti porro maxime minus vel excepturi est, nostrum praesentium repudiandae. Quae nobis deleniti consectetur tenetur aut delectus sunt? Repellat incidunt odio nobis fugiat animi sit illum dolore in? Explicabo quas quaerat ad voluptatem. Dolorem amet itaque error nulla laudantium, quis neque sunt sequi dolorum sed culpa, voluptatem aliquam impedit! Aliquam dolorum doloribus nobis rerum placeat ratione quia ab, saepe nihil eligendi, optio voluptatum quod recusandae doloremque exercitationem.</p>
+              </li>
+              <li>
+                <h3>Use of Services</h3>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quidem sint temporibus rem blanditiis, natus ut magni unde? Magni dolorum eveniet ab atque esse quidem, impedit quod ut suscipit natus magnam sequi doloremque voluptate? Adipisci molestiae nemo ipsum dicta nihil perferendis dignissimos nesciunt quam impedit sunt animi, a odio, deserunt, iusto cum ducimus. Reprehenderit id ipsum odit earum temporibus omnis praesentium optio sit. Inventore blanditiis quia rerum, maxime repellat officia nisi in doloremque autem vel. Illum, dolore ratione odit nulla eum eius earum. Voluptatibus libero, ipsum qui vero deleniti, maiores facilis unde commodi vitae vel odit? Dolorum perferendis ipsam totam molestiae delectus odio eligendi repellat aliquam qui adipisci. Nulla quae nihil laborum officia facere dolor voluptate, velit adipisci, quidem ex rem aliquid! Libero consequatur suscipit esse ad atque asperiores culpa debitis, harum provident eius corrupti porro maxime minus vel excepturi est, nostrum praesentium repudiandae. Quae nobis deleniti consectetur tenetur aut delectus sunt? Repellat incidunt odio nobis fugiat animi sit illum dolore in? Explicabo quas quaerat ad voluptatem. Dolorem amet itaque error nulla laudantium, quis neque sunt sequi dolorum sed culpa, voluptatem aliquam impedit! Aliquam dolorum doloribus nobis rerum placeat ratione quia ab, saepe nihil eligendi, optio voluptatum quod recusandae doloremque exercitationem.</p>
+              </li>
+              <li>
+                <h3>Content</h3>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quidem sint temporibus rem blanditiis, natus ut magni unde? Magni dolorum eveniet ab atque esse quidem, impedit quod ut suscipit natus magnam sequi doloremque voluptate? Adipisci molestiae nemo ipsum dicta nihil perferendis dignissimos nesciunt quam impedit sunt animi, a odio, deserunt, iusto cum ducimus. Reprehenderit id ipsum odit earum temporibus omnis praesentium optio sit. Inventore blanditiis quia rerum, maxime repellat officia nisi in doloremque autem vel. Illum, dolore ratione odit nulla eum eius earum. Voluptatibus libero, ipsum qui vero deleniti, maiores facilis unde commodi vitae vel odit? Dolorum perferendis ipsam totam molestiae delectus odio eligendi repellat aliquam qui adipisci. Nulla quae nihil laborum officia facere dolor voluptate, velit adipisci, quidem ex rem aliquid! Libero consequatur suscipit esse ad atque asperiores culpa debitis, harum provident eius corrupti porro maxime minus vel excepturi est, nostrum praesentium repudiandae. Quae nobis deleniti consectetur tenetur aut delectus sunt? Repellat incidunt odio nobis fugiat animi sit illum dolore in? Explicabo quas quaerat ad voluptatem. Dolorem amet itaque error nulla laudantium, quis neque sunt sequi dolorum sed culpa, voluptatem aliquam impedit! Aliquam dolorum doloribus nobis rerum placeat ratione quia ab, saepe nihil eligendi, optio voluptatum quod recusandae doloremque exercitationem.</p>
+              </li>
+            </ol>
+          </div>
+        </div>
+        <div class="tos-validation">
+          <div>
+            <input type="checkbox" id="tos-agree">
+            <label for="tos-agree">Accept Terms of Service</label>
+          </div>
+          <div>
+            <input type="checkbox" id="tos-agree-privacy">
+            <label for="tos-agree-privacy">Accept Privacy Policy</label>
+          </div>
+        </div>
+        <div class="tos-bottom">
+          <button type="button" id="tos-back">Back</button>
+          <button type="button" class="tos-confirm disabled" id="tos-confirm">Confirm</button>
+        </div>
+      </section>
+
+      <section class="signed-up-loading">
+        <div class="loading-icon">
+          <svg height="100px" width="100px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" xml:space="preserve" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path style="fill:#5B7A7F;" d="M503.916,304.505v10.779c0,8.929-7.239,16.168-16.168,16.168H24.253 c-8.929,0-16.168-7.239-16.168-16.168v-10.779c0-8.929,7.239-16.168,16.168-16.168h463.495 C496.677,288.337,503.916,295.576,503.916,304.505z M202.78,155.604l107.38-9.394l-2.819-32.214 c-1.038-11.86-11.494-20.634-23.355-19.597l-64.428,5.636c-11.861,1.038-20.634,11.494-19.597,23.355L202.78,155.604z"></path> <path style="fill:#769CA5;" d="M436.872,279.703l-11.422,114.224c-4.409,44.082-41.502,77.652-85.804,77.652H172.354 c-44.301,0-81.395-33.57-85.804-77.652L75.128,279.703C73.859,267.012,83.825,256,96.579,256h318.841 C428.175,256,438.14,267.012,436.872,279.703z"></path> <path style="fill:#90B5BF;" d="M436.872,279.703l-11.422,114.224c-4.409,44.082-41.502,77.652-85.804,77.652h-68.019 c-44.301,0-81.395-33.57-85.804-77.652L174.4,279.703C173.131,267.012,183.097,256,195.851,256h219.569 C428.175,256,438.14,267.012,436.872,279.703z M451.161,150.104c-1.297-14.826-14.367-25.794-29.194-24.496L89.092,154.731 c-14.826,1.298-25.793,14.367-24.496,29.194l0,0c1.297,14.825,14.367,25.793,29.193,24.496l332.877-29.123 C441.492,178,452.458,164.93,451.161,150.104z"></path> <path style="fill:#769CA5;" d="M451.161,150.104c1.297,14.826-9.67,27.896-24.496,29.194L93.79,208.421 c-14.826,1.297-27.896-9.67-29.194-24.496l0,0c-0.52-5.942,0.935-11.6,3.814-16.334c5.16,8.479,14.822,13.777,25.38,12.853 l332.875-29.123c8.884-0.777,16.378-5.784,20.683-12.859C449.435,141.89,450.789,145.835,451.161,150.104z"></path> <path style="fill:#FFA233;" d="M363.789,245.221c5.953,0,10.779,4.826,10.779,10.779v86.232c0,12.167-10.079,21.98-22.344,21.544 c-11.682-0.415-20.772-10.372-20.772-22.06v-13.17c-3.739,2.165-8.174,3.264-12.905,2.804 c-11.122-1.082-19.432-10.769-19.432-21.945V256c0-5.953,4.826-10.779,10.779-10.779h21.558h10.779H363.789z"></path> <path style="fill:#FFC248;" d="M353.01,309.895L353.01,309.895c-11.906,0-21.558-9.651-21.558-21.558v-43.116h32.337 c5.953,0,10.779,4.826,10.779,10.779v32.337C374.568,300.243,364.917,309.895,353.01,309.895z"></path> <path d="M344.926,83.537V8.084c0-4.466,3.618-8.084,8.084-8.084c4.466,0,8.084,3.618,8.084,8.084v75.453 c0,4.466-3.618,8.084-8.084,8.084C348.545,91.621,344.926,88.003,344.926,83.537z M385.347,91.621c4.466,0,8.084-3.618,8.084-8.084 V8.084c0-4.466-3.618-8.084-8.084-8.084s-8.084,3.618-8.084,8.084v75.453C377.263,88.003,380.882,91.621,385.347,91.621z M512,304.505v10.779c0,13.372-10.88,24.253-24.253,24.253H460.8c-4.466,0-8.084-3.618-8.084-8.084c0-4.466,3.618-8.084,8.084-8.084 h26.947c4.458,0,8.084-3.626,8.084-8.084v-10.779c0-4.458-3.626-8.084-8.084-8.084h-44.423l-9.83,98.31 c-4.842,48.419-45.189,84.932-93.848,84.932H172.354c-48.66,0-89.006-36.513-93.848-84.932l-9.83-98.31H24.253 c-4.458,0-8.084,3.626-8.084,8.084v10.779c0,4.458,3.626,8.084,8.084,8.084H51.2c4.466,0,8.084,3.618,8.084,8.084 c0,4.466-3.618,8.084-8.084,8.084H24.253C10.88,339.537,0,328.657,0,315.284v-10.779c0-13.372,10.88-24.253,24.253-24.253H67.06 c-0.751-8.232,1.99-16.45,7.541-22.584c5.608-6.198,13.619-9.753,21.978-9.753h170.2c4.466,0,8.084,3.618,8.084,8.084 s-3.618,8.084-8.084,8.084h-170.2c-3.855,0-7.403,1.575-9.99,4.432c-2.587,2.859-3.801,6.546-3.417,10.382l11.422,114.224 c4.011,40.118,37.441,70.371,77.759,70.371h167.29c40.319,0,73.748-30.253,77.76-70.371l10.552-105.519 c0.005-0.055,0.011-0.109,0.017-0.163l0.854-8.542c0.384-3.836-0.83-7.523-3.417-10.382c-2.586-2.857-6.134-4.432-9.99-4.432 h-32.768v78.147c0,8.117-3.216,15.693-9.059,21.33c-5.84,5.636-13.517,8.565-21.657,8.292c-16.02-0.569-28.569-13.809-28.569-30.139 v-2.3c-1.846,0.17-3.722,0.164-5.602-0.019c-15.243-1.484-26.735-14.378-26.735-29.991V256c0-10.401,8.463-18.863,18.863-18.863 h53.895c7.511,0,14.009,4.412,17.043,10.779h34.59c8.359,0,16.37,3.555,21.978,9.753c5.551,6.133,8.292,14.352,7.541,22.584h42.806 C501.12,280.253,512,291.133,512,304.505z M366.484,256c0-1.486-1.208-2.695-2.695-2.695h-53.895c-1.486,0-2.695,1.208-2.695,2.695 v53.404c0,7.131,5.329,13.237,12.132,13.899c2.824,0.273,5.614-0.332,8.069-1.754c1.253-0.725,2.653-1.089,4.052-1.089 c1.394,0,2.787,0.36,4.038,1.08c2.503,1.444,4.046,4.113,4.046,7.004v13.17c0,7.455,5.821,13.727,12.975,13.982 c3.706,0.121,7.2-1.206,9.854-3.768c2.656-2.563,4.119-6.007,4.119-9.697V256z M450.021,495.832H51.2 c-4.466,0-8.084,3.618-8.084,8.084S46.734,512,51.2,512h398.821c4.466,0,8.084-3.618,8.084-8.084S454.487,495.832,450.021,495.832z M56.542,184.629c-0.815-9.323,2.048-18.404,8.063-25.572c6.015-7.168,14.461-11.565,23.783-12.381l104.695-9.16l-1.175-13.422 c-1.424-16.282,10.664-30.688,26.946-32.113l64.427-5.636c16.253-1.416,30.688,10.664,32.113,26.945l1.174,13.423l104.696-9.16 c19.242-1.687,36.267,12.603,37.952,31.845c1.684,19.244-12.603,36.267-31.845,37.953L94.494,216.474 c-1.033,0.091-2.061,0.135-3.08,0.135C73.466,216.609,58.137,202.839,56.542,184.629z M72.649,183.219 c0.439,5.019,2.807,9.567,6.667,12.806c3.86,3.238,8.754,4.779,13.768,4.34l332.877-29.123 c10.361-0.907,18.054-10.075,17.147-20.436c-0.907-10.361-10.059-18.044-20.436-17.147l-165.969,14.521 c-4.445,0.39-8.369-2.901-8.758-7.349c-0.388-4.447,2.901-8.369,7.349-8.758l45.166-3.952l-1.175-13.423 c-0.649-7.402-7.193-12.891-14.597-12.247l-64.427,5.636c-3.585,0.314-6.834,2.004-9.147,4.761c-2.313,2.757-3.414,6.25-3.1,9.836 l1.174,13.422l13.769-1.205c4.436-0.377,8.369,2.902,8.758,7.349c0.388,4.447-2.901,8.369-7.349,8.758l-21.763,1.905 c-0.019,0.001-0.039,0.003-0.059,0.005c-0.019,0.001-0.038,0.003-0.058,0.004l-112.691,9.86c-5.019,0.439-9.567,2.807-12.806,6.667 C73.75,173.31,72.21,178.2,72.649,183.219z"></path> </g></svg>
+        </div>
+        <div class="loading-text">
+          <h2>L</h2>
+          <h2>e</h2>
+          <h2>t</h2>
+          <span>&nbsp;</span>
+          <h2>T</h2>
+          <h2>h</h2>
+          <h2>i</h2>
+          <h2>s</h2>
+          <span>&nbsp;</span>
+          <h2>S</h2>
+          <h2>i</h2>
+          <h2>t</h2>
+          <h2>e</h2>
+          <span>&nbsp;</span>
+          <h2>C</h2>
+          <h2>o</h2>
+          <h2>o</h2>
+          <h2>k</h2>
+          <h2>.</h2>
+          <h2>.</h2>
+          <h2>.</h2>
+        </div>
+      </section>
+
+      <section class="signed-up">
+        <div class="registered-header">
+          <h2 class="xl-header">Welcome to the Cult</h2>
+        </div>
+        <div class="registered-body">
+          <div class="login-button-wrapper">
+            <button type="button">Log in</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="login">
+        <form action="" class="form-wrapper">
+          <div class="form-header">
+            <h2 class="xl-header">Login</h2>
+          </div>
+          <div class="form-body">
+            <div class="form-main">
+              <div class="input">
+                <input type="email" id="email-log" name="email" title="Insert Your Email" required placeholder="johndoe@email.com">
+                <label for="email-log">Email</label>
+              </div>
+              <div class="input password">
+                <input type="password" id="password-log" name="password" minlength="8" placeholder="Password" required>
+                <label for="password-log">Password</label>
+              </div>
+            </div>
+            <div class="form-bottom">
+              <div>
+                <div class="remember-me">
+                  <input type="checkbox" id="remember" name="remember">
+                  <label for="remember">Remember me</label>
+                </div>
+                <div class="forgot-password">
+                  <a href="#">Forgot Password?</a>
+                </div>
+              </div>
+              <button id="log-in-btn" type="submit">Log In</button>
+              <p>Don't Have an Account? <a class="sign-up-account" href="#">Sign Up</a></p>
+            </div>
+          </div>
+        </form>
+      </section>
+
+      <section class="profile">
+        <div class="profile-wrapper">
+          <div class="profile-top">
+            <img src="img/cookingBook.png" alt="Profiles Photo">
+            <button type="button">Change Photo</button>
+          </div>
+          <div class="profile-main">
+            <div>
+              Name:
+              <span class="profile-name">Doge Doge</span>
+            </div>
+            <div>
+              Email:
+              <span class="profile-email">doge@email.com</span>
+            </div>
+            <div>
+              Phone Number:
+              <span class="profile-phone">+1123123123</span>
+            </div>
+          </div>
+          <div class="profile-bottom">
+            <button class="log-out" type="button">Log out</button>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="mode-trigger start">
+    <div class="bulb-wrapper">
+      <svg class="bulb" height="30px" width="30px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" xml:space="preserve" fill="#000000">
+        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+        <g id="SVGRepo_iconCarrier"> 
+          <g transform="translate(1 1)"> 
+            <g class="bulb-rays"> 
+              <path style="fill:#FFD700;" d="M259.741,65.37c-5.689,0-9.481-3.793-9.481-9.481V17.963c0-5.689,3.793-9.481,9.481-9.481 c5.689,0,9.481,3.793,9.481,9.481v37.926C269.222,61.578,265.43,65.37,259.741,65.37z"></path> 
+              <path style="fill:#FFD700;" d="M487.296,255H449.37c-5.689,0-9.481-3.793-9.481-9.481c0-5.689,3.793-9.481,9.481-9.481h37.926 c5.689,0,9.481,3.793,9.481,9.481C496.778,251.207,492.985,255,487.296,255z"></path> 
+              <path style="fill:#FFD700;" d="M70.111,255H32.185c-5.689,0-9.481-3.793-9.481-9.481c0-5.689,3.793-9.481,9.481-9.481h37.926 c5.689,0,9.481,3.793,9.481,9.481C79.593,251.207,75.8,255,70.111,255z"></path> 
+              <path style="fill:#FFD700;" d="M393.43,121.311c-2.844,0-4.741-0.948-6.637-2.844c-3.793-3.793-3.793-9.481,0-13.274 l26.548-26.548c3.793-3.793,9.481-3.793,13.274,0s3.793,9.481,0,13.274l-26.548,26.548 C399.119,120.363,396.274,121.311,393.43,121.311z"></path> 
+              <path style="fill:#FFD700;" d="M98.556,416.185c-2.844,0-4.741-0.948-6.637-2.844c-3.793-3.793-3.793-9.481,0-13.274 l26.548-26.548c3.793-3.793,9.481-3.793,13.274,0s3.793,9.481,0,13.274l-26.548,26.548 C103.296,415.237,101.4,416.185,98.556,416.185z"></path> 
+              <path style="fill:#FFD700;" d="M420.926,416.185c-2.844,0-4.741-0.948-6.637-2.844l-26.548-26.548 c-3.793-3.793-3.793-9.481,0-13.274s9.481-3.793,13.274,0l26.548,26.548c3.793,3.793,3.793,9.482,0,13.274 C425.667,415.237,422.822,416.185,420.926,416.185z"></path> 
+              <path style="fill:#FFD700;" d="M126.052,121.311c-2.844,0-4.741-0.948-6.637-2.844L91.919,90.97 c-3.793-3.793-3.793-9.481,0-13.274c3.793-3.793,9.481-3.793,13.274,0l26.548,26.548c3.793,3.793,3.793,9.481,0,13.274 C130.793,120.363,127.948,121.311,126.052,121.311z"></path> </g> 
+            <g class="bulb-rays"> 
+              <path style="fill:#E6C200;" d="M250.259,55.889c-5.689,0-9.481-3.793-9.481-9.481V8.481c0-5.689,3.793-9.481,9.481-9.481 s9.481,3.793,9.481,9.481v37.926C259.741,52.096,255.948,55.889,250.259,55.889z"></path> 
+              <path style="fill:#E6C200;" d="M477.815,245.519h-37.926c-5.689,0-9.481-3.793-9.481-9.481c0-5.689,3.793-9.481,9.481-9.481 h37.926c5.689,0,9.481,3.793,9.481,9.481C487.296,241.726,483.504,245.519,477.815,245.519z"></path> 
+              <path style="fill:#E6C200;" d="M60.63,245.519H22.704c-5.689,0-9.481-3.793-9.481-9.481c0-5.689,3.793-9.481,9.481-9.481H60.63 c5.689,0,9.481,3.793,9.481,9.481C70.111,241.726,66.319,245.519,60.63,245.519z"></path> 
+              <path style="fill:#E6C200;" d="M383.948,111.83c-2.844,0-4.741-0.948-6.637-2.844c-3.793-3.793-3.793-9.481,0-13.274 l26.548-26.548c3.793-3.793,9.482-3.793,13.274,0c3.793,3.793,3.793,9.481,0,13.274l-26.548,26.548 C389.637,110.881,386.793,111.83,383.948,111.83z"></path> 
+              <path style="fill:#E6C200;" d="M89.074,406.704c-2.844,0-4.741-0.948-6.637-2.844c-3.793-3.793-3.793-9.482,0-13.274 l26.548-26.548c3.793-3.793,9.481-3.793,13.274,0s3.793,9.481,0,13.274l-26.548,26.548 C93.815,405.756,91.919,406.704,89.074,406.704z"></path> 
+              <path style="fill:#E6C200;" d="M411.444,406.704c-2.844,0-4.741-0.948-6.637-2.844l-26.548-26.548 c-3.793-3.793-3.793-9.481,0-13.274c3.793-3.793,9.481-3.793,13.274,0l26.548,26.548c3.793,3.793,3.793,9.481,0,13.274 C416.185,405.756,413.341,406.704,411.444,406.704z"></path> 
+              <path style="fill:#E6C200;" d="M116.57,111.83c-2.844,0-4.741-0.948-6.637-2.844L82.437,81.489c-3.793-3.793-3.793-9.481,0-13.274 c3.793-3.793,9.481-3.793,13.274,0l26.548,26.548c3.793,3.793,3.793,9.481,0,13.274C121.311,110.881,118.467,111.83,116.57,111.83 z"></path> </g> 
+            <path class="bulb-rays" style="fill:#CCB000;" d="M250.259,84.333c-83.437,0-151.704,68.267-151.704,151.704c0,67.319,43.615,124.207,104.296,144.119 v92.918h18.963v28.444h56.889v-28.444h18.963v-92.918c60.682-19.911,104.296-76.8,104.296-144.119 C401.963,152.6,333.696,84.333,250.259,84.333"></path>
+            <path class="bulb-path" d="M221.815,84.333c-0.948,0-0.948,0-1.896,0c0,0.948-0.948,1.896-1.896,2.844 c-5.689,7.585-14.222,9.481-23.704,11.378c-7.585,0.948-17.067,1.896-22.756,6.637c0.948,2.844,0,5.689-2.844,8.533 c-16.119,12.326-34.133,24.652-43.615,42.667c-1.896,2.844-4.741,4.741-7.585,4.741c1.896,2.844,2.844,6.637,0.948,10.43 c-5.689,12.326-10.43,23.704-19.911,31.289c1.896,11.378,2.844,22.756,3.793,35.081c0,1.896,0,4.741,0,8.533 c8.533,21.807,16.119,44.563,18.015,67.319c10.43,12.326,20.859,24.652,32.237,36.03c7.585,4.741,14.222,11.378,20.859,18.015 c10.43,4.741,19.911,10.43,24.652,21.807c4.741,10.43,3.793,22.756,1.896,36.03c3.793,1.896,7.585,5.689,6.637,11.378 c-1.896,9.481-3.793,18.963-4.741,28.444c0,1.896-0.948,5.689-0.948,10.43h0.948c15.17,0,24.652,14.222,29.393,26.548h18.963 v-28.444h18.963v-92.919c60.681-19.911,104.296-76.8,104.296-144.119C373.519,152.6,305.252,84.333,221.815,84.333"></path> 
+            <path style="fill:#FFFFFF;" d="M250.259,84.333c4.741,0,9.481,0,14.222,0.948C187.681,91.919,127,157.341,127,236.037 c0,67.319,43.615,124.207,104.296,144.119v92.918h18.963v28.444h-28.444v-28.444h-18.963v-92.918 c-60.681-19.911-104.296-76.8-104.296-144.119C98.556,152.6,166.822,84.333,250.259,84.333"></path> 
+            <g class="bulb-border"> 
+              <path d="M278.704,511h-56.889c-5.689,0-9.481-3.793-9.481-9.481v-18.963h-9.481 c-5.689,0-9.481-3.793-9.481-9.482v-86.281c-62.578-23.704-104.296-83.437-104.296-150.756 c0-89.126,72.059-161.185,161.185-161.185s161.185,72.059,161.185,161.185c0,67.319-41.719,127.052-104.296,150.756v86.281 c0,5.689-3.793,9.482-9.482,9.482h-9.481v18.963C288.185,507.207,284.393,511,278.704,511z M231.296,492.037h37.926v-18.963 c0-5.689,3.793-9.481,9.481-9.481h9.481v-83.437c0-3.793,2.844-7.585,6.637-9.482c58.785-18.963,97.659-73.007,97.659-134.637 c0-78.696-63.526-142.222-142.222-142.222s-142.222,63.526-142.222,142.222c0,61.63,38.874,115.674,97.659,134.637 c3.793,0.948,6.637,4.741,6.637,9.482v83.437h9.481c5.689,0,9.481,3.793,9.481,9.481V492.037z"></path> 
+              <path d="M297.667,416.185h-94.815c-5.689,0-9.481-3.793-9.481-9.481s3.793-9.481,9.481-9.481h94.815 c5.689,0,9.482,3.793,9.482,9.481S303.356,416.185,297.667,416.185z"></path> 
+              <path d="M145.963,245.519c-5.689,0-9.481-3.793-9.481-9.481c0-62.578,51.2-113.778,113.778-113.778 c5.689,0,9.481,3.793,9.481,9.481c0,5.689-3.793,9.481-9.481,9.481c-52.148,0-94.815,42.667-94.815,94.815 C155.444,241.726,151.652,245.519,145.963,245.519z"></path> 
+            </g> 
+          </g> 
+        </g>
+      </svg>
+    </div>
+  </div>
+  <div class="mode-transitions">
+    <div class="mode-icons">
+      <img src="assets/sun.svg" alt="Sun" class="sun">
+      <img src="assets/moon.svg" alt="Moon" class="moon">
+    </div>
+  </div>
+
+  <div class="pop-up">
+    <div class="regis-err">
+      <div class="error-icon">
+        <i class="fas fa-x fa-5x"></i>
+      </div>
+      <div class="error-text">
+        <h3>Email Already Registered</h3>
+      </div>
+      <button type="button" class="close">Close</button>
+    </div>
+    <!-- <div class="login-err"></div> -->
+  </div>
 
   <script src="js/script.js"></script>
 </body>
