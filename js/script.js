@@ -24,6 +24,7 @@ const optionsButton = document.getElementById('options-btn');
 const createButton = document.getElementById('create-account');
 const heroWelcome = document.querySelector('.hero.welcome');
 const heroTos = document.querySelector('.hero.terms-of-services');
+const heroLoading = document.querySelector('.hero.loading');
 
 const tosConfirm = document.getElementById('tos-confirm');
 
@@ -120,9 +121,15 @@ tosConfirm.addEventListener('click', (e) => {
   if(tosValid) {
     if(tos.className === 'tos show'){
       tos.classList.toggle('show');
+      heroTos.classList.remove('show');
+      heroTos.classList.add('hide-up');
+      heroLoading.classList.add('show');
       tos.style.transform = 'translateX(0)';
       loadingAnim.classList.toggle('show');
       loadingText.classList.add('start');
+
+      tosAgree.checked = false;
+      tosAgreePrivacy.checked = false;
 
       loadingTextItems.forEach((item, index) => {
         item.style.animationDelay = `${index * .05}s`;
@@ -148,10 +155,20 @@ function restartAnimation() {
 }
 
 const loginBtn = document.querySelector('.login-button-wrapper');
-const login = document.querySelector('.login')
+const loginPage = document.querySelector('.login')
+
+const loginInput = loginPage.querySelectorAll('input');
+
+const setLoginInput = () => {
+  loginInput.forEach(item => {
+    item.value = '';
+    item.textContent = '';
+  })
+}
 
 loginBtn.addEventListener('click', (e) => {
-  login.classList.add('show');
+  setHeroWelcome();
+  loginPage.classList.add('show');
   signed.classList.remove('show');
 
   const inputs = signUp.querySelectorAll('input');
@@ -160,34 +177,71 @@ loginBtn.addEventListener('click', (e) => {
     item.value = '';
     passCheck();
   }
+
+  loginBtnParent = '';
 })
 
-container.addEventListener('click', (e) => {
-  const loginButton = e.target.closest('.login-button');
 
-  if(loginButton) {
-    container.classList.add('registered');
-    login.classList.add('show');
+let loginBtnParent = '';
+
+container.addEventListener('click', (e) => {
+  const optionsLoginButton = e.target.closest('.options .login-button');
+  const signUpLoginButton = e.target.closest('.sign-up .login-button');
+
+  if(optionsLoginButton) {
+    container.classList.add('logged');
+    loginPage.classList.add('show');
     signed.classList.remove('show');
+    if(!container.classList.contains('registered')){
+      options.classList.remove('show');
+    }
+
+    loginBtnParent = 'options';
+  }
+  else if(signUpLoginButton) {
+    container.classList.add('logged');
+    loginPage.classList.add('show');
+    signed.classList.remove('show');
+    if(!container.classList.contains('registered')){
+      signUp.classList.remove('show');
+    }
+
+    loginBtnParent = 'signup';
   }
 
-  if(login.classList.contains('show')) {
+  console.log(loginBtnParent);
+
+  if(loginPage.classList.contains('show')) {
     const signUpBtn = e.target.closest('.sign-up-account');
     if(signUpBtn) {
       container.classList.remove('registered');
       signed.classList.remove('show');
-      login.classList.remove('show');
+      loginPage.classList.remove('show');
+      setLoginInput();
+      setHeroWelcome();
 
-      if(!signUp.classList.contains('show') && !options.classList.contains('show')) {
+      if(loginBtnParent === '') {
         signUp.classList.add('show');
-        heroWelcome.classList.remove('hide');
-        heroWelcome.classList.add('show');
-        heroTos.classList.remove('show');
-        heroTos.classList.add('hide');
+      }else if(loginBtnParent === 'options') {
+        container.classList.remove('logged');
+        options.classList.add('show');
+      }else if(loginBtnParent === 'signup') {
+        container.classList.remove('logged');
+        signUp.classList.add('show');
       }
     }
   }
 })
+
+const setHeroWelcome = () => {
+  heroWelcome.classList.remove('hide');
+  heroWelcome.classList.add('show');
+  heroTos.classList.remove('show');
+  heroTos.classList.add('hide');
+  heroTos.classList.remove('hide-up');
+  heroLoading.classList.remove('show');
+  heroLoading.classList.add('hide');
+}
 
 const getCode = document.querySelector('.select-codes');
 
@@ -340,6 +394,45 @@ header.addEventListener('mouseleave', (e) => {
 
 header.addEventListener('mouseenter', (e) => {
   headerImg.classList.remove('paused');
+})
+
+const login = document.getElementById('log-in-btn');
+const profilePage = document.querySelector('.profile');
+
+login.addEventListener('click', (e) => {
+  e.preventDefault();
+
+  let valid = true;
+
+  const inputs = loginPage.querySelectorAll('input');
+  for (const item of inputs) {
+    if (!item.checkValidity()) {
+      item.reportValidity();
+      valid = false;
+      break;
+    }
+  }
+
+  if(valid) {
+    loginPage.classList.add('logged');
+    // signUp.classList.remove('show');
+    profilePage.classList.add('show');
+  }
+})
+
+profilePage.addEventListener('click', (e) => {
+  const logOut = e.target.closest('.log-out');
+
+  if(logOut) {
+    profilePage.classList.remove('show');
+    container.classList.remove('registered');
+    container.classList.remove('logged');
+    loginPage.classList.remove('logged');
+    loginPage.classList.remove('show');
+    signUp.classList.add('show');
+    
+    setLoginInput();
+  }
 })
 
 document.addEventListener('DOMContentLoaded', setTheme);
