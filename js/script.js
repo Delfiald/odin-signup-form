@@ -12,8 +12,7 @@ const options = document.querySelector('.options');
 const tos = document.querySelector('.tos');
 const signed = document.querySelector('.signed-up');
 const loginPage = document.querySelector('.login')
-
-const loginInput = loginPage.querySelectorAll('input');
+const profilePage = document.querySelector('.profile');
 
 // Hero Variables
 const heroWelcome = document.querySelector('.hero.welcome');
@@ -38,14 +37,15 @@ const loadingTextItems = document.querySelectorAll('.loading-text *');
 
 // Login Variables
 let loginBtnParent = '';
-const loginBtn = document.querySelector('.login-button-wrapper');
-const profilePage = document.querySelector('.profile');
 
 // Input[type="password"] Variables
 const password = document.querySelector('.input.password');
 const confirmPassword = document.querySelector('.input.confirm-password');
 const passInput = password.querySelector('#password');
 const confirmPassInput = confirmPassword.querySelector('#confirm-password');
+
+// Login Input
+const loginInput = loginPage.querySelectorAll('input');
 
 // Init Site
 const initSite = () => {
@@ -270,7 +270,6 @@ const login = (e) => {
   }
 
   if(valid) {
-    console.log(logInLogic());
     if(logInLogic() !== -1) {
       userIndex = logInLogic();
       setProfilePage(userIndex);
@@ -301,6 +300,7 @@ const profilePageHandler = (e) => {
       loginPage.classList.remove('logged');
       loginPage.classList.remove('show');
       signUp.classList.add('show');
+      profilePage.style.transitionDelay = '1s';
     }, 1000);
   }
 }
@@ -432,7 +432,9 @@ const handleAction = (e, target) => {
   } else if (target.closest('.sign-up .login-button')) {
     loginPageHandler('sign-up');
   } else if (target.closest('.login-button-wrapper')) {
-    loginPageHandler('signed');
+    target.closest('.login-button-wrapper button').addEventListener('transitionend', (e) => {
+      loginPageHandler('signed');
+    })
   } else if (target.closest('.sign-up-account')) {
     signupPageHandler();
   } else if (target.closest('#log-in-btn')) {
