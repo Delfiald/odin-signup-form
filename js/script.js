@@ -201,7 +201,6 @@ function restartAnimation() {
 
 // Login Page Handler
 const loginPageHandler = (target) => {
-
   if(target === 'options' || target === 'sign-up'){
     container.classList.add('logged');
     if (!container.classList.contains('registered')) {
@@ -228,6 +227,7 @@ const signupPageHandler = () => {
   container.classList.remove('registered');
   container.classList.remove('logged');
   loginPage.classList.remove('show');
+  signed.classList.remove('show');
   resetLoginInput();
 
   if(loginBtnParent === 'signed' || loginBtnParent === 'sign-up') {
@@ -447,9 +447,12 @@ const handleAction = (e, target) => {
   } else if (target.closest('.sign-up .login-button')) {
     loginPageHandler('sign-up');
   } else if (target.closest('.login-button-wrapper')) {
-    target.closest('.login-button-wrapper button').addEventListener('transitionend', (e) => {
+    // target.disabled = true;
+    setTimeout(() => {
       loginPageHandler('signed');
-    })
+
+      // target.disabled = false;
+    }, 1000);
   } else if (target.closest('.sign-up-account')) {
     signupPageHandler();
   } else if (target.closest('#log-in-btn')) {

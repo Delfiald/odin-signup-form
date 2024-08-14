@@ -360,6 +360,7 @@ body {
 /* Sign Up */
 .sign-up {
   transition: .5s all ease-in-out;
+  z-index: calc(var(--index-position) + 1);
 }
 
 .form-wrapper {
@@ -798,9 +799,13 @@ section.signed-up-loading.show .loading-text.start * {
   justify-content: center;
   border-radius: 20px;
   box-shadow: 5px 5px 5px var(--box-shadow-color), -5px -5px 5px var(--box-shadow-color);
-  transition: 2s all ease;
+  transition: 1s opacity ease;
   transform-origin: bottom;
   transform: translateX(0);
+}
+
+.main > section.signed-up.show {
+  transition: 2s all ease;
 }
 
 .container section.signed-up > *{
@@ -1106,9 +1111,19 @@ section.signed-up-loading.show .loading-text.start * {
   transition: .5s all ease;
   justify-content: center;
   align-items: center;
+  visibility: hidden;
+}
+
+.main .login * {
+  visibility: hidden !important;
+}
+
+.main .login.show * {
+  visibility: visible !important;
 }
 
 .main .login.show {
+  visibility: visible;
   border-radius: 20px;
 }
 
