@@ -11,6 +11,7 @@ A simple yet comprehensive signup form built as part of the Odin Project. This f
 - **Light and Dark Mode:** Users can switch between light and dark themes, enhancing accessibility and user comfort based on their preferences.
 - **Custom Error Messages:** Provides user-friendly error messages for invalid inputs, making it clear what needs to be corrected.
 - **Smooth Animations:** Utilizes subtle animations for focus states, theme transitions, and input feedback to enhance the user experience.
+- **Password Visibility Toggle:** Includes a feature to show or hide the password as the user types, improving usability.
 
 ## Technologies Used
 

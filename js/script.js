@@ -356,6 +356,21 @@ const setCode = (e) => {
   }
 }
 
+// Password Visibility
+const setVisibility = (target) => {
+  const parent = document.querySelectorAll(`.${target} .visibility-toggle i`);
+  const input = document.querySelector(`.${target} input`);
+
+  if(parent) {
+    parent.forEach((item) => {
+      item.classList.toggle('active');
+    })
+
+    const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
+    input.setAttribute('type', type);
+  }
+}
+
 // Password Check and Password Strength
 const passwordStrength = (passInput) => {
   const passValue = passInput.value;
@@ -443,6 +458,10 @@ const handleAction = (e, target) => {
     profilePageHandler(e);
   } else if (target.closest('.select-codes')) {
     setCode(e);
+  } else if (target.closest('.password .visibility-toggle')) {
+    setVisibility('password');
+  } else if (target.closest('.confirm-password .visibility-toggle')) {
+    setVisibility('confirm-password');
   }
 };
 

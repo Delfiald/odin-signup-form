@@ -509,6 +509,30 @@ body {
   flex: 80%;
 }
 
+.form-main .input.password .visibility-toggle,
+.form-main .input.confirm-password .visibility-toggle {
+  right: .5rem;
+  color: var(--text-color-primary);
+  opacity: 0;
+  visibility: hidden;
+  width: 1rem;
+  height: 1rem;
+}
+
+.form-main .input.password .visibility-toggle i,
+.form-main .input.confirm-password .visibility-toggle i {
+  visibility: hidden;
+  opacity: 0;
+  cursor: pointer;
+  position: absolute;
+}
+
+.form-main .input.password .visibility-toggle .active,
+.form-main .input.confirm-password .visibility-toggle .active {
+  visibility: visible;
+  opacity: 1;
+}
+
 .form-main .input.password > .password-strength {
   top: 100%;
   margin-top: .5rem;
@@ -608,6 +632,11 @@ body {
 .form-main .input input:not(:placeholder-shown) ~ label {
   left: 0;
   top: -50%;
+}
+
+.form-main .input input:not(:placeholder-shown) ~ .visibility-toggle {
+  opacity: 1;
+  visibility: visible;
 }
 
 .form-main .input > div {
