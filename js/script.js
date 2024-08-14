@@ -101,8 +101,13 @@ const signUpHandler = (e) => {
 
   if(valid) {
     if(signUp.className === 'sign-up show'){
-      signUpTosHandler();
-      welcomeTOSHeroHandler();
+      if(signUpLogic()){
+        signUpTosHandler();
+        welcomeTOSHeroHandler();
+      }else {
+        setPopUpText("Email Already Registered");
+        popUp.classList.add('show');
+      }
     }
   }
 }
@@ -160,6 +165,7 @@ const tosAgreement = () => {
 const tosConfirm = () => {
   if(tosValid) {
     if(tos.className === 'tos show'){
+      addingUser();
       tos.classList.toggle('show');
 
       heroTos.classList.remove('show');
@@ -264,10 +270,20 @@ const login = (e) => {
   }
 
   if(valid) {
-    loginPage.classList.add('logged');
-    profilePage.classList.add('show');
+    console.log(logInLogic());
+    if(logInLogic() !== -1) {
+      userIndex = logInLogic();
+      setProfilePage(userIndex);
+      loginPage.classList.add('logged');
+      profilePage.classList.add('show');
+    }else {
+      setPopUpText("Email does not exist or wrong password");
+      popUp.classList.add('show');
+    }
   }
 }
+
+let userIndex;
 
 // Logout
 const profilePageHandler = (e) => {
@@ -277,6 +293,7 @@ const profilePageHandler = (e) => {
     profilePage.classList.remove('show');
     profilePage.style.transitionDelay = '0s';
     resetLoginInput();
+    resetSignUpInput();
 
     setTimeout(() => {
       container.classList.remove('registered');
@@ -315,6 +332,11 @@ const modeHandler = (e) => {
 }
 
 // Pop Up
+const setPopUpText = (text) => {
+  const errorText = popUp.querySelector('.error-text h3');
+  errorText.textContent = text;
+}
+
 const popUpHandler = (e) => {
   const closeBtn = e.target.closest('.close');
   if(closeBtn) {
@@ -324,9 +346,11 @@ const popUpHandler = (e) => {
 
 // Input Customizations
 // Phone Code Dropdown
+let codeValue = '';
+
 const setCode = (e) => {
   if (e.target.classList.contains('code')) {
-    const codeValue = e.target.getAttribute('data-value');
+    codeValue = e.target.getAttribute('data-value');
     const codeActive = document.querySelector('.code-active');
     codeActive.textContent = codeValue;
   }
