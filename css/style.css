@@ -521,6 +521,30 @@ body {
   border: 1px solid #ccc;
 }
 
+.password-strength .strength-background.weak {
+  background: yellow;
+  flex-basis: 25% !important;
+}
+.password-strength .strength-background.moderate {
+  background: green;
+  flex-basis: 50% !important;
+}
+.password-strength .strength-background.strong {
+  background: red;
+  flex-basis: 75% !important;
+}
+.password-strength .strength-background.chad {
+  background: var(--color-red-600);
+  flex-basis: 100% !important;
+}
+
+.password-strength .strength-background.weak .strength,
+.password-strength .strength-background.moderate .strength,
+.password-strength .strength-background.strong .strength,
+.password-strength .strength-background.chad .strength {
+  opacity: 1 !important;
+}
+
 .form-main .input.password > .password-strength .strength-background {
   height: 100%;
   flex: 0;
@@ -549,10 +573,6 @@ body {
 
 .form-main .input.password > .password-strength > div span {
   color: var(--text-color-primary);
-}
-
-.form-main .input.password > .password-strength > .weak {
-  background: yellow;
 }
 
 /* Input */
@@ -847,7 +867,7 @@ section.signed-up-loading.show .loading-text.start * {
   animation: bulb-show 1s ease 1.5s forwards;
 }
 
-.mode-trigger.triggered {
+.mode-trigger.pulled {
   animation: bulb-trigger .5s ease forwards;
 }
 
