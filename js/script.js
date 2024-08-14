@@ -1,16 +1,51 @@
+const container = document.querySelector('.container');
+const popUp = document.querySelector('.pop-up');
+
+// Mode Variables
+const modeTrigger = document.querySelector('.mode-trigger');
+const modeTransitions = document.querySelector('.mode-transitions');
+let isModeTrigger = false;
+
+// Sections Variables
 const signUp = document.querySelector('.sign-up');
 const options = document.querySelector('.options');
 const tos = document.querySelector('.tos');
 const signed = document.querySelector('.signed-up');
-
 const loginPage = document.querySelector('.login')
+
 const loginInput = loginPage.querySelectorAll('input');
 
+// Hero Variables
 const heroWelcome = document.querySelector('.hero.welcome');
 const heroTos = document.querySelector('.hero.terms-of-services');
 const heroLoading = document.querySelector('.hero.loading');
-const container = document.querySelector('.container');
-const popUp = document.querySelector('.pop-up');
+
+// Header Variables
+const header = document.querySelector('.header');
+const headerImg = document.querySelector('.header-img');
+const imagesList = ['cookingBook.png', 'cookingBook2.jpg'];
+let index = 0;
+
+// ToS Variables
+const tosAgree = document.getElementById('tos-agree');
+const tosAgreePrivacy = document.getElementById('tos-agree-privacy');
+let tosValid = false;
+
+// Loading Variables
+const loadingAnim = document.querySelector('.signed-up-loading');
+const loadingText = document.querySelector('.loading-text');
+const loadingTextItems = document.querySelectorAll('.loading-text *');
+
+// Login Variables
+let loginBtnParent = '';
+const loginBtn = document.querySelector('.login-button-wrapper');
+const profilePage = document.querySelector('.profile');
+
+// Input[type="password"] Variables
+const password = document.querySelector('.input.password');
+const confirmPassword = document.querySelector('.input.confirm-password');
+const passInput = password.querySelector('#password');
+const confirmPassInput = confirmPassword.querySelector('#confirm-password');
 
 // Init Site
 const initSite = () => {
@@ -27,13 +62,7 @@ const initSite = () => {
 }
 
 // Header
-const header = document.querySelector('.header');
-const headerImg = document.querySelector('.header-img');
-
-const imagesList = ['cookingBook.png', 'cookingBook2.jpg'];
-let index = 0;
-
-headerImg.addEventListener('animationiteration', (e) => {
+const headerImgHandler = () => {
   if(index === 1) {
     index--;
     headerImg.style.animationDirection = 'normal';
@@ -45,16 +74,15 @@ headerImg.addEventListener('animationiteration', (e) => {
   setTimeout(() => {
     headerImg.style.background = `url('../img/${imagesList[index]}') center center/cover no-repeat`;
   }, 500)
+}
 
-});
-
-header.addEventListener('mouseleave', (e) => {
+const handleMouseLeave = () => {
   headerImg.classList.add('paused');
-})
+};
 
-header.addEventListener('mouseenter', (e) => {
+const handleMouseEnter = () => {
   headerImg.classList.remove('paused');
-})
+};
 
 // Sign Up Handler
 const signUpHandler = (e) => {
@@ -116,11 +144,6 @@ const resetHero = () => {
 }
 
 // Confirm Button Disabler
-const tosAgree = document.getElementById('tos-agree');
-const tosAgreePrivacy = document.getElementById('tos-agree-privacy');
-
-let tosValid = false;
-
 const tosAgreement = () => {
   const tosConfirmBtn = document.getElementById('tos-confirm');
 
@@ -134,11 +157,6 @@ const tosAgreement = () => {
 }
 
 // Confirm Button Handler
-const loadingAnim = document.querySelector('.signed-up-loading');
-
-const loadingText = document.querySelector('.loading-text');
-const loadingTextItems = document.querySelectorAll('.loading-text *');
-
 const tosConfirm = () => {
   if(tosValid) {
     if(tos.className === 'tos show'){
@@ -169,18 +187,13 @@ const tosConfirm = () => {
   }
 }
 
-loadingTextItems[loadingTextItems.length - 1].addEventListener('animationend', restartAnimation);
-
 function restartAnimation() {
   loadingText.classList.remove('start');
-
   void loadingText.offsetWidth;
-
   loadingText.classList.add('start');
 }
 
 // Login Page Handler
-let loginBtnParent = '';
 const loginPageHandler = (target) => {
 
   if(target === 'options' || target === 'sign-up'){
@@ -228,8 +241,6 @@ const resetSignUpInput = () => {
   }
 }
 
-const loginBtn = document.querySelector('.login-button-wrapper');
-
 const resetLoginInput = () => {
   loginInput.forEach(item => {
     item.value = '';
@@ -238,8 +249,6 @@ const resetLoginInput = () => {
 }
 
 // Login
-const profilePage = document.querySelector('.profile');
-
 const login = (e) => {
   e.preventDefault();
 
@@ -279,47 +288,8 @@ const profilePageHandler = (e) => {
   }
 }
 
-// Container
-container.addEventListener('click', (e) => {
-  const target = e.target;
-
-  if(target) {
-    if(target.id === 'sign-up-btn') {
-      signUpHandler(e);
-    }else if(target.closest('#options-btn') || target.closest('#create-account')) {
-      signUpOptionsHandler();
-    }else if(target.id === 'tos-back') {
-      signUpBack();
-    }else if(target.closest('#tos-confirm')) {
-      tosConfirm();
-    }else if (target.closest('.options .login-button')) {
-      loginPageHandler('options');
-    }else if (target.closest('.sign-up .login-button')) {
-      loginPageHandler('sign-up');
-    }else if (target.closest('.login-button-wrapper')) {
-      loginPageHandler('signed');
-    }else if(target.closest('.sign-up-account')) {
-      signupPageHandler();
-    }else if(target.closest('#log-in-btn')){
-      login(e);
-    }else if(target.closest('.profile')){
-      profilePageHandler(e);
-    }else if(target.closest('.select-codes')){
-      setCode(e);
-    }
-  }
-
-  // Options Section
-  tosAgreement();
-});
-
 // Mode Button Handler
-const modeTrigger = document.querySelector('.mode-trigger');
-const modeTransitions = document.querySelector('.mode-transitions');
-
-let isModeTrigger = false;
-
-modeTrigger.addEventListener('click', (e) => {
+const modeHandler = (e) => {
   if(isModeTrigger) return;
 
   const bulb = e.target.closest('.bulb-wrapper .bulb');
@@ -342,15 +312,15 @@ modeTrigger.addEventListener('click', (e) => {
     root.classList.toggle('dark');
     root.classList.toggle('light');
   }
-})
+}
 
 // Pop Up
-popUp.addEventListener('click', (e) => {
+const popUpHandler = (e) => {
   const closeBtn = e.target.closest('.close');
   if(closeBtn) {
     popUp.classList.remove('show');
   }
-})
+}
 
 // Input Customizations
 // Phone Code Dropdown
@@ -363,17 +333,6 @@ const setCode = (e) => {
 }
 
 // Password Check and Password Strength
-const password = document.querySelector('.input.password');
-const confirmPassword = document.querySelector('.input.confirm-password');
-
-const passInput = password.querySelector('#password');
-const confirmPassInput = confirmPassword.querySelector('#confirm-password');
-
-passInput.addEventListener('input', (e) => {
-  passwordStrength(passInput);
-  passMatch(passInput, confirmPassInput)
-})
-
 const passwordStrength = (passInput) => {
   const passValue = passInput.value;
   const strengthBg = password.querySelector('.strength-background');
@@ -433,8 +392,66 @@ const passMatch = (passInput, confirmPassInput) => {
 const passCheck = () => {
   passwordStrength(passInput, confirmPassInput);
 }
-confirmPassInput.addEventListener('input', (e) => {
-  passMatch(passInput, confirmPassInput);
+
+// Container Handler
+const handleAction = (target) => {
+  if (target.id === 'sign-up-btn') {
+    signUpHandler(e);
+  } else if (target.closest('#options-btn') || target.closest('#create-account')) {
+    signUpOptionsHandler();
+  } else if (target.id === 'tos-back') {
+    signUpBack();
+  } else if (target.closest('#tos-confirm')) {
+    tosConfirm();
+  } else if (target.closest('.options .login-button')) {
+    loginPageHandler('options');
+  } else if (target.closest('.sign-up .login-button')) {
+    loginPageHandler('sign-up');
+  } else if (target.closest('.login-button-wrapper')) {
+    loginPageHandler('signed');
+  } else if (target.closest('.sign-up-account')) {
+    signupPageHandler();
+  } else if (target.closest('#log-in-btn')) {
+    login(e);
+  } else if (target.closest('.profile')) {
+    profilePageHandler(e);
+  } else if (target.closest('.select-codes')) {
+    setCode(e);
+  }
+};
+
+// Event Listener
+// Mode
+modeTrigger.addEventListener('click', modeHandler);
+// Pop Up
+popUp.addEventListener('click', popUpHandler);
+
+// Header
+headerImg.addEventListener('animationiteration', headerImgHandler);
+header.addEventListener('mouseleave', handleMouseLeave);
+header.addEventListener('mouseenter', handleMouseEnter);
+
+// Password
+passInput.addEventListener('input', (e) => {
+  passwordStrength(passInput);
+  passMatch(passInput, confirmPassInput)
 })
+
+// Loading Animation Restart
+loadingTextItems[loadingTextItems.length - 1].addEventListener('animationend', restartAnimation);
+
+confirmPassInput.addEventListener('input', () => passMatch(passInput, confirmPassInput));
+
+// Container
+container.addEventListener('click', (e) => {
+  const target = e.target;
+
+  if (target) {
+    handleAction(target);
+  }
+
+  // Options Section
+  tosAgreement();
+});
 
 document.addEventListener('DOMContentLoaded', initSite);
