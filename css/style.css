@@ -1503,20 +1503,10 @@ section.signed-up-loading.show .loading-text.start * {
 
 @media (max-width: 380px) {
   input {
-    padding: 10px;
-  }
-
-  .form-header {
-    font-size: 0.9rem;
-    margin-bottom: 1.5rem;
+    padding: 8px;
   }
 
   .sign-up .form-main {
     row-gap: 3rem;
-  }
-
-  .profile-wrapper {
-    gap: 1.5rem;
-    font-size: 1.2rem;
   }
 }
