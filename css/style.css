@@ -266,6 +266,7 @@ body {
   flex-direction: column;
   animation: main-fade .5s ease-in forwards;
   transition: 1s all ease;
+  overflow: hidden;
 }
 
 .container.registered .main {
@@ -714,6 +715,7 @@ input:focus:valid ~ .hint .guide-text * {
   padding: 0 1rem;
   display: flex;
   flex-direction: column;
+  gap: .5rem;
 }
 
 .tos-validation div {
@@ -940,13 +942,16 @@ section.signed-up-loading.show .loading-text.start * {
 
 .mode-transitions .mode-icons {
   position: relative;
-  
+  width: 50px;
+  height: 50px;
 }
 
 .mode-transitions .mode-icons > img {
   position: absolute;
   top: 0;
   left: 0;
+  right: 0;
+  bottom: 0;
   opacity: 0;
 }
 
@@ -1195,7 +1200,7 @@ section.signed-up-loading.show .loading-text.start * {
   align-items: center;
   justify-content: center;
   min-height: inherit;
-  gap: 1rem;
+  gap: 2rem;
   padding: 1rem;
 }
 
@@ -1393,5 +1398,115 @@ section.signed-up-loading.show .loading-text.start * {
 }
 
 @media (max-width: 1100px) {
-  
+  :root {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 1100px) and (orientation: portrait) {
+  :root {
+    font-size: 16px;
+  }
+
+  .container {
+    max-width: 85vw;
+  }
+
+  .form-main .input {
+    width: 90%;
+  }
+
+  .form-main {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .tos {
+    justify-content: center;
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 900px) and (orientation: portrait) {
+  .header {
+    display: none;
+  }
+
+  .container {
+    max-width: 75vw;
+  }
+
+  .form-main {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .form-main .input {
+    width: var(--input-width);
+  }
+
+  .tos {
+    justify-content: center;
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 600px) {
+  :root {
+    font-size: 10px;
+  }
+
+  input {
+    padding: 8px;
+  }
+
+  .container {
+    min-height: 95vh;
+  }
+
+  .form-header {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  .form-body {
+    width: 100%;
+  }
+
+  .sign-up .form-main {
+    row-gap: 4rem;
+    flex: 1;
+  }
+
+  .form-main .input {
+    width: 90%;
+  }
+
+  .form-main .input.confirm-password {
+    margin-top: 1rem;
+  }
+
+  .form-bottom {
+    width: 100%;
+  }
+
+  .main .login .form-wrapper {
+    width: 100%;
+  }
+
+  .profile-wrapper {
+    gap: 2rem;
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 380px) {
+  input {
+    padding: 8px;
+  }
+
+  .sign-up .form-main {
+    row-gap: 3rem;
+  }
 }

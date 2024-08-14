@@ -394,7 +394,7 @@ const passCheck = () => {
 }
 
 // Container Handler
-const handleAction = (target) => {
+const handleAction = (e, target) => {
   if (target.id === 'sign-up-btn') {
     signUpHandler(e);
   } else if (target.closest('#options-btn') || target.closest('#create-account')) {
@@ -447,7 +447,7 @@ container.addEventListener('click', (e) => {
   const target = e.target;
 
   if (target) {
-    handleAction(target);
+    handleAction(e, target);
   }
 
   // Options Section
