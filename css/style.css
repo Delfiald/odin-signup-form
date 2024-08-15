@@ -802,10 +802,15 @@ section.signed-up-loading.show .loading-text.start * {
   transition: 1s opacity ease;
   transform-origin: bottom;
   transform: translateX(0);
+  pointer-events: none;
 }
 
 .main > section.signed-up.show {
   transition: 2s all ease;
+}
+
+.main > section.signed-up.show {
+  pointer-events: auto;
 }
 
 .container section.signed-up > *{
@@ -1116,10 +1121,12 @@ section.signed-up-loading.show .loading-text.start * {
 
 .main .login * {
   visibility: hidden !important;
+  pointer-events: none;
 }
 
 .main .login.show * {
   visibility: visible !important;
+  pointer-events: auto;
 }
 
 .main .login.show {
