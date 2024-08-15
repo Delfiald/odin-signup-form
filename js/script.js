@@ -276,16 +276,22 @@ const login = (e) => {
     }
   
     if(valid) {
-      if(logInLogic() !== -1) {
-        userIndex = logInLogic();
-        setProfilePage(userIndex);
-        loginPage.classList.add('logged');
-        profilePage.classList.add('show');
-      }else {
-        setPopUpText("Email does not exist or wrong password");
-        popUp.classList.add('show');
-      }
+      handleLogin();
     }
+  }
+}
+
+const handleLogin = async () => {
+  try {
+    const userIndex = await logInLogic();
+
+    if (userIndex !== -1) {
+      setProfilePage(userIndex);
+      loginPage.classList.add('logged');
+      profilePage.classList.add('show');
+    }
+  } catch (error) {
+    console.error("Error during login: ", error);
   }
 }
 
