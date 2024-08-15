@@ -215,6 +215,9 @@ const loginPageHandler = (target) => {
   }
 
   resetHero();
+  resetVisibility();
+  resetCode();
+  resetSignUpInput();
   loginPage.classList.add('show');
   signed.classList.remove('show');
 
@@ -229,6 +232,8 @@ const signupPageHandler = () => {
   loginPage.classList.remove('show');
   signed.classList.remove('show');
   resetLoginInput();
+  resetVisibility();
+  resetCode();
 
   if(loginBtnParent === 'signed' || loginBtnParent === 'sign-up') {
     signUp.classList.add('show');
@@ -256,28 +261,30 @@ const resetLoginInput = () => {
 
 // Login
 const login = (e) => {
-  e.preventDefault();
+  if(loginPage.classList.contains('show')){
+    e.preventDefault();
 
-  let valid = true;
-
-  const inputs = loginPage.querySelectorAll('input');
-  for (const item of inputs) {
-    if (!item.checkValidity()) {
-      item.reportValidity();
-      valid = false;
-      break;
+    let valid = true;
+  
+    const inputs = loginPage.querySelectorAll('input');
+    for (const item of inputs) {
+      if (!item.checkValidity()) {
+        item.reportValidity();
+        valid = false;
+        break;
+      }
     }
-  }
-
-  if(valid) {
-    if(logInLogic() !== -1) {
-      userIndex = logInLogic();
-      setProfilePage(userIndex);
-      loginPage.classList.add('logged');
-      profilePage.classList.add('show');
-    }else {
-      setPopUpText("Email does not exist or wrong password");
-      popUp.classList.add('show');
+  
+    if(valid) {
+      if(logInLogic() !== -1) {
+        userIndex = logInLogic();
+        setProfilePage(userIndex);
+        loginPage.classList.add('logged');
+        profilePage.classList.add('show');
+      }else {
+        setPopUpText("Email does not exist or wrong password");
+        popUp.classList.add('show');
+      }
     }
   }
 }
@@ -293,6 +300,8 @@ const profilePageHandler = (e) => {
     profilePage.style.transitionDelay = '0s';
     resetLoginInput();
     resetSignUpInput();
+    resetVisibility();
+    resetCode();
 
     setTimeout(() => {
       container.classList.remove('registered');
@@ -356,6 +365,11 @@ const setCode = (e) => {
   }
 }
 
+const resetCode = () => {
+  const codeActive = document.querySelector('.code-active');
+  codeActive.textContent = '+1';
+}
+
 // Password Visibility
 const setVisibility = (target) => {
   const parent = document.querySelectorAll(`.${target} .visibility-toggle i`);
@@ -369,6 +383,21 @@ const setVisibility = (target) => {
     const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
     input.setAttribute('type', type);
   }
+}
+
+const resetVisibility = () => {
+  const pass = document.querySelectorAll(`.password .visibility-toggle i`);
+  const confPass = document.querySelectorAll(`.confirm-password .visibility-toggle i`);
+  const passInput = document.querySelector(`.password input`);
+  const confPassInput = document.querySelector(`.confirm-password input`);
+  
+  pass[0].classList.add('active');
+  pass[1].classList.remove('active');
+  confPass[0].classList.add('active');
+  confPass[1].classList.remove('active');
+
+  passInput.setAttribute('type', 'password');
+  confPassInput.setAttribute('type', 'password');
 }
 
 // Password Check and Password Strength
@@ -447,11 +476,8 @@ const handleAction = (e, target) => {
   } else if (target.closest('.sign-up .login-button')) {
     loginPageHandler('sign-up');
   } else if (target.closest('.login-button-wrapper')) {
-    // target.disabled = true;
     setTimeout(() => {
       loginPageHandler('signed');
-
-      // target.disabled = false;
     }, 1000);
   } else if (target.closest('.sign-up-account')) {
     signupPageHandler();
