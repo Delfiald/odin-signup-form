@@ -7,23 +7,36 @@ const signUpLogic = () => {
   return true;
 }
 
-const addingUser = () => {
+const addingUser = async () => {
   const newUser = {};
 
-  signUpInputs.forEach((input) => {
+  for (const input of signUpInputs) {
     const key = input.name;
 
-    if(key === 'phone'){
+    if (key === 'phone') {
       input.value = codeValue + input.value;
-    }else if(key === 'email') {
+    } else if (key === 'email') {
       input.value = input.value.toLowerCase();
+    } else if (key === 'password') {
+      const encoder = new TextEncoder();
+      const data = encoder.encode(input.value);
+
+
+      const hash = await crypto.subtle.digest('SHA-256', data);
+      const hashArray = Array.from(new Uint8Array(hash));
+      const hashHex = hashArray.map(byte => byte.toString(16).padStart(2, '0')).join('');
+      
+      input.value = hashHex;
     }
 
     newUser[key] = input.value;
-  })
+  }
 
   users.push(newUser);
+
+  console.log(users);
 }
+
 
 const isEmailExist = () => {
   const inputEmail = signUpInputs[2].value.toLowerCase();
@@ -32,12 +45,22 @@ const isEmailExist = () => {
   }) !== undefined;
 }
 
-const logInLogic = () => {
+const logInLogic = async () => {
   const inputEmail = logInInputs[0].value.toLowerCase();
   const inputPassword = logInInputs[1].value;
-  return users.findIndex((user) => {
-    return user.email && user.email === inputEmail && user.password && user.password === inputPassword;
+  
+  const encoder = new TextEncoder();
+  const data = encoder.encode(inputPassword);
+  
+  const hash = await crypto.subtle.digest('SHA-256', data);
+  const hashArray = Array.from(new Uint8Array(hash));
+  const hashHex = hashArray.map(byte => byte.toString(16).padStart(2, '0')).join('');
+
+  const userIndex = users.findIndex((user) => {
+    return user.email && user.email === inputEmail && user.password && user.password === hashHex;
   });
+
+  return userIndex;
 }
 
 const setProfilePage = (userIndex) => {
@@ -45,7 +68,7 @@ const setProfilePage = (userIndex) => {
   const profileEmail = profilePage.querySelector('.profile-email');
   const profilePhone = profilePage.querySelector('.profile-phone');
 
-  profileName.textContent = users[userIndex].first_name + ' '+ users[userIndex].first_name;
+  profileName.textContent = users[userIndex].first_name + ' '+ users[0].last_name;
   profileEmail.textContent = users[userIndex].email;
   profilePhone.textContent = users[userIndex].phone;
 }
