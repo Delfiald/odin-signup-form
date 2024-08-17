@@ -33,8 +33,6 @@ const addingUser = async () => {
   }
 
   users.push(newUser);
-
-  console.log(users);
 }
 
 
