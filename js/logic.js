@@ -68,7 +68,7 @@ const setProfilePage = (userIndex) => {
   const profileEmail = profilePage.querySelector('.profile-email');
   const profilePhone = profilePage.querySelector('.profile-phone');
 
-  profileName.textContent = users[userIndex].first_name + ' '+ users[0].last_name;
+  profileName.textContent = users[userIndex].first_name + ' '+ users[userIndex].last_name;
   profileEmail.textContent = users[userIndex].email;
   profilePhone.textContent = users[userIndex].phone;
 }

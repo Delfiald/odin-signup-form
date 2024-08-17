@@ -289,6 +289,9 @@ const handleLogin = async () => {
       setProfilePage(userIndex);
       loginPage.classList.add('logged');
       profilePage.classList.add('show');
+    }else {
+      setPopUpText("Email does not exist or wrong password");
+      popUp.classList.add('show');
     }
   } catch (error) {
     console.error("Error during login: ", error);
